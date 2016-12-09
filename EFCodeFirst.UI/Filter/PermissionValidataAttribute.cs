@@ -13,6 +13,11 @@ namespace EFCodeFirst.UI.Filter
 {
     public class PermissionValidataAttribute : AuthorizeAttribute
     {
+        #region 权限过滤器
+        /// <summary>
+        /// 权限过滤器
+        /// </summary>
+        /// <param name="filterContext"></param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             //创建要验证的区域名单
@@ -55,6 +60,7 @@ namespace EFCodeFirst.UI.Filter
                 }
             }
         }
+        #endregion
 
         #region 验证是否登录(自动登录)
         /// <summary>
@@ -154,6 +160,7 @@ namespace EFCodeFirst.UI.Filter
         }
         #endregion
 
+        #region 使用公共属性
         public OperationContext operContext
         {
             get
@@ -161,5 +168,6 @@ namespace EFCodeFirst.UI.Filter
                 return OperationContext.OperContext;
             }
         }
+        #endregion
     }
 }
