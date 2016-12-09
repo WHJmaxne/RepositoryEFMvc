@@ -80,7 +80,7 @@ namespace EFCodeFirst.UI.Helper
         }
         #endregion
 
-        #region 3.0 当前登陆用户id存入session
+        #region 3.0 当前登陆用户id存入cookie
         public int UserIdCookie
         {
             set
