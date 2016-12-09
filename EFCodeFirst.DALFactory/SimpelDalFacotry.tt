@@ -1,0 +1,42 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ include file="EF.Utility.CS.ttinclude"#><#@
+ output extension=".cs"#>
+<#
+
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+CodeRegion region = new CodeRegion(this, 1);
+MetadataTools ef = new MetadataTools(this);
+
+string namespaceName = code.VsNamespaceSuggestion();
+
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+
+#>
+using EFCodeFirst.IDAL;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq; 
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks; 
+
+namespace EFCodeFirst.DALFactory
+{
+    public partial class AbstractFactory
+    {
+<#
+	string [] classNames={"UserInfo","Department","Role","Permission","UserVipPermission","UserRole","RolePer"};
+foreach (string className in classNames)
+{    
+#>		
+	    public static I<#=className#>DAL Create<#=className#>DAL()
+        {
+            string classFulleName = AssNameSpace + ".<#=className#>DAL";
+            return CreateInstance(classFulleName) as I<#=className#>DAL;
+        }
+<#}#>
+	}
+	
+}

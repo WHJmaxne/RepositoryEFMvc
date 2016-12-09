@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FCB01C05-6E2D-4DCB-8891-44FADEA3DE12}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EFCodeFirst.DAL</RootNamespace>
+    <AssemblyName>EFCodeFirst.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseDAL.cs" />
+    <Compile Include="Dal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEFContext.cs" />
+    <Compile Include="DbEFContextFactory.cs" />
+    <Compile Include="Migrations\201611220158316_InitialCreate.cs" />
+    <Compile Include="Migrations\201611220158316_InitialCreate.Designer.cs">
+      <DependentUpon>201611220158316_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611220202099_Initial.cs" />
+    <Compile Include="Migrations\201611220202099_Initial.Designer.cs">
+      <DependentUpon>201611220202099_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611220203569_Editp.cs" />
+    <Compile Include="Migrations\201611220203569_Editp.Designer.cs">
+      <DependentUpon>201611220203569_Editp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611220839458_Edit20161122.cs" />
+    <Compile Include="Migrations\201611220839458_Edit20161122.Designer.cs">
+      <DependentUpon>201611220839458_Edit20161122.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612060231380_edit01.cs" />
+    <Compile Include="Migrations\201612060231380_edit01.Designer.cs">
+      <DependentUpon>201612060231380_edit01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFCodeFirst.IDAL\EFCodeFirst.IDAL.csproj">
+      <Project>{55c49216-a1af-4eca-9773-732d0169dd47}</Project>
+      <Name>EFCodeFirst.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EFCodeFirst.Model\EFCodeFirst.Model.csproj">
+      <Project>{0b1973d7-9714-4174-acfc-3e71c1866874}</Project>
+      <Name>EFCodeFirst.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dal.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Dal.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611220158316_InitialCreate.resx">
+      <DependentUpon>201611220158316_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611220202099_Initial.resx">
+      <DependentUpon>201611220202099_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611220203569_Editp.resx">
+      <DependentUpon>201611220203569_Editp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611220839458_Edit20161122.resx">
+      <DependentUpon>201611220839458_Edit20161122.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612060231380_edit01.resx">
+      <DependentUpon>201612060231380_edit01.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
