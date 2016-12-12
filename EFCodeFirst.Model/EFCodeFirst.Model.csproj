@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Department.cs" />
+    <Compile Include="ExtensionModel\Permission.cs" />
     <Compile Include="FormatModel\AjaxMsg.cs" />
     <Compile Include="FormatModel\AjaxMsgStatu.cs" />
     <Compile Include="FormatModel\PageModel.cs" />

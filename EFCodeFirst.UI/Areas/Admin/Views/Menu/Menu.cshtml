@@ -12,7 +12,7 @@ foreach (var per in Model)
             if (perP.ToList().Count > 0)
             {
                     <li class="submenu">
-                        <a href="#"><i class="icon icon-th-list"></i> <span>@per.PName</span></a>
+                        <a href="#"><i class="icon icon-th-list"></i> <span>@per.PName</span><span class="label label-important">@perP.ToList().Count.ToString()</span></a>
                         <ul>
                             @MenuTree(per.Id)
                             @*<li><a href="form-common.html">Basic Form</a></li>
@@ -23,7 +23,7 @@ foreach (var per in Model)
                 }
                 else
                 {
-                    <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>@per.PName</span></a></li>
+                    <li> <a href="widgets.html"><i class="icon icon-th-list"></i> <span>@per.PName</span></a></li>
                 }
             }
             else
