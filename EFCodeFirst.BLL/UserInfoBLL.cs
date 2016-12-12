@@ -31,7 +31,7 @@ namespace EFCodeFirst.BLL
         }
         #endregion
 
-        #region 查询用户权限
+        #region 2.0 查询用户权限
         /// <summary>
         /// 查询用户权限
         /// </summary>
