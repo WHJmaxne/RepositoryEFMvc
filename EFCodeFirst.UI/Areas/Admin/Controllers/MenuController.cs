@@ -14,9 +14,8 @@ namespace EFCodeFirst.UI.Areas.Admin.Controllers
         [Common.Attr.SkipPermission]
         public PartialViewResult Index()
         {
-            var pers = operContext.PerSession;
-            var perMenu = from p in pers where p.POperationType == 1 && p.PIsDel == false select p;
-            perMenu = perMenu.OrderBy(p => p.POrder).ToList();
+            var pers = operContext.PerSession.OrderBy(p => p.POrder).ToList();
+            var perMenu = from p in pers where p.POperationType == 1 && p.PIsDel == false select p.ToMenu();
             //ViewData.Model = perMenu;
             return PartialView("Menu", perMenu);
         }

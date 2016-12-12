@@ -1,40 +1,33 @@
-﻿@model List<EFCodeFirst.Model.Permission>
-
+﻿@model IEnumerable<EFCodeFirst.Model.ViewModel.ViewMenu>
 @helper MenuTree(int id)
 {
 foreach (var per in Model)
 {
-    if (per.ParentId == id)
+    if (per.parentId == id)
     {
-        if (per.ParentId == 1)
+        if (per.parentId == 1)
         {
-            var perP = from p in Model where p.ParentId == per.Id select p;
+            var perP = from p in Model where p.parentId == per.Id select p;
             if (perP.ToList().Count > 0)
             {
                     <li class="submenu">
-                        <a href="#"><i class="icon icon-th-list"></i> <span>@per.PName</span><span class="label label-important">@perP.ToList().Count.ToString()</span></a>
+                        <a href="#"><i class="icon icon-th-list"></i> <span>@per.text</span><span class="label label-important">@perP.ToList().Count.ToString()</span></a>
                         <ul>
                             @MenuTree(per.Id)
-                            @*<li><a href="form-common.html">Basic Form</a></li>
-                                <li><a href="form-validation.html">Form with Validation</a></li>
-                                <li><a href="form-wizard.html">Form with Wizard</a></li>*@
                         </ul>
                     </li>
                 }
                 else
                 {
-                    <li> <a href="widgets.html"><i class="icon icon-th-list"></i> <span>@per.PName</span></a></li>
+                    <li> <a href="@per.url"><i class="icon icon-th-list"></i> <span>@per.text</span></a></li>
                 }
             }
             else
             {
                 <li>
-                    <a href="#"><span>@per.PName</span></a>
+                    <a href="@per.url"><span>@per.text</span></a>
                     <ul>
                         @MenuTree(per.Id)
-                        @*<li><a href="form-common.html">Basic Form</a></li>
-                            <li><a href="form-validation.html">Form with Validation</a></li>
-                            <li><a href="form-wizard.html">Form with Wizard</a></li>*@
                     </ul>
                 </li>
         }
@@ -45,7 +38,7 @@ foreach (var per in Model)
 <div id="sidebar">
     <a href="#" class="visible-phone"><i class="icon icon-home"></i></a>
     <ul>
-        <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>首页管理</span></a> </li>
+        <li class="active"><a href="#"><i class="icon icon-home"></i> <span>首页管理</span></a> </li>
         @*<li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
             <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
             <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
