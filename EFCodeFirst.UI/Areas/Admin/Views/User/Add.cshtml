@@ -1,0 +1,31 @@
+﻿@{
+
+}
+@model EFCodeFirst.Model.UserInfo
+@section headSection{
+    <script type="text/javascript">
+        //$(function () {
+        //    $.validator.unobtrusive.parse('form');
+        //})
+    </script>
+}
+@using (Ajax.BeginForm("Add", new { area = "Admin", controller = "User" }, new AjaxOptions()
+{
+    HttpMethod = "post",
+    OnBegin = "AddBegin",
+    OnSuccess = "AddComplete"
+}, new { id = "addForm" }))
+{
+    <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">添加用户</h5>
+    </div>
+    <div class="modal-body">
+        @Html.DisplayNameFor(u => u.UserName)
+        @Html.TextBoxFor(u => u.UserName)
+        @Html.ValidationMessageFor(u => u.UserName)<br />
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="添加" class="btn btn-primary">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    </div>
+}

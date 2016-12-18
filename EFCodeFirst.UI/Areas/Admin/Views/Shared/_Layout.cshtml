@@ -7,19 +7,16 @@
     @*@Styles.Render("~/Content/BootStrapCss")*@
     @*<link href="/Content/BootStrap/css/bootstrap.min.css" rel="stylesheet" />*@
     <link href="/Content/JQSweetAlert/dist/sweetalert2.min.css" rel="stylesheet" />
-    <script src="/Scripts/jquery-1.11.1.min.js"></script>
-    @*<script src="/Content/BootStrap/js/bootstrap.min.js"></script>*@
-    <script src="/Content/JQSweetAlert/dist/sweetalert2.min.js"></script>
-
     <link rel="stylesheet" href="/Content/Layout/css/bootstrap.min.css" />
+    <link href="/Content/BootStrap/css/bootstrap-pagination.css" rel="stylesheet" />
+    @*<link href="/Content/BootStrap/css/bootstrap.min.css" rel="stylesheet" />*@
     <link rel="stylesheet" href="/Content/Layout/css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="/Content/Layout/css/fullcalendar.css" />
     <link rel="stylesheet" href="/Content/Layout/css/matrix-style.css" />
     <link rel="stylesheet" href="/Content/Layout/css/matrix-media.css" />
     <link href="/Content/Layout/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/Content/Layout/css/jquery.gritter.css" />
-    <link href='http://fonts.useso.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-    @RenderSection("headSection", required: false)
+    @*<link rel="stylesheet" href="/Content/Layout/css/jquery.gritter.css" />*@
+    @*<link href='http://fonts.useso.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>*@
 </head>
 <body>
     @{ Html.RenderAction("Index", "Header");}
@@ -31,9 +28,15 @@
         @RenderBody()
     </div>
     <div class="row-fluid">
-        <div id="footer" class="span12"> 2013 &copy; Matrix Admin. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a> </div>
+        <div id="footer" class="span12"> 2016 &copy; Maxne Admin. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a> </div>
     </div>
-
+    <script src="/Scripts/jquery-1.11.1.min.js"></script>
+    @*<script src="/Scripts/jquery-1.11.3.min.js"></script>*@
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @*<script src="/Content/BootStrap/js/bootstrap.min.js"></script>*@
+    <script src="/Content/JQSweetAlert/dist/sweetalert2.min.js"></script>
     <script src="/Content/Layout/js/excanvas.min.js"></script>
     @*<script src="/Content/Layout/js/jquery.min.js"></script>*@
     @*<script src="/Content/Layout/js/jquery.ui.custom.js"></script>*@
@@ -55,29 +58,8 @@
     @*<script src="/Content/Layout/js/matrix.popover.js"></script>*@
     @*<script src="/Content/Layout/js/jquery.dataTables.min.js"></script>*@
     @*<script src="/Content/Layout/js/matrix.tables.js"></script>*@
-    <script type="text/javascript">
-        // This function is called from the pop-up menus to transfer to
-        // a different page. Ignore if the value returned is a null string:
-        function goPage(newURL) {
+    <script src="/Content/jqPaginator/jqPaginator.min.js"></script>
 
-            // if url is empty, skip the menu dividers and reset the menu selection to default
-            if (newURL != "") {
-
-                // if url is "-", it is this page -- reset the menu:
-                if (newURL == "-") {
-                    resetMenu();
-                }
-                    // else, send page to designated URL
-                else {
-                    document.location.href = newURL;
-                }
-            }
-        }
-
-        // resets the menu selection upon entry to this page:
-        function resetMenu() {
-            document.gomenu.selector.selectedIndex = 2;
-        }
-    </script>
+    @RenderSection("headSection", required: false)
 </body>
 </html>

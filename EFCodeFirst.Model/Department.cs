@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace EFCodeFirst.Model
 {
-   public class Department
+    public partial class Department
     {
-       public Department()
-       {
-           this.UserInfo = new HashSet<UserInfo>();
-           this.Role = new HashSet<Role>();
-       }
+        public Department()
+        {
+            this.UserInfo = new HashSet<UserInfo>();
+            this.Role = new HashSet<Role>();
+        }
         public int Id { get; set; }
         public int DepParentId { get; set; }
         public string DepName { get; set; }

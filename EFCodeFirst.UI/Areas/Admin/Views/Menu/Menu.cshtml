@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<EFCodeFirst.Model.ViewModel.ViewMenu>
+
 @helper MenuTree(int id)
 {
 foreach (var per in Model)
@@ -19,13 +20,13 @@ foreach (var per in Model)
                 }
                 else
                 {
-                    <li> <a href="@per.url"><i class="icon icon-th-list"></i> <span>@per.text</span></a></li>
+                    <li> <a href="@per.url/@per.Id"><i class="icon icon-th-list"></i> <span>@per.text</span></a></li>
                 }
             }
             else
             {
                 <li>
-                    <a href="@per.url"><span>@per.text</span></a>
+                    <a href="@per.url/@per.Id"><span>@per.text</span></a>
                     <ul>
                         @MenuTree(per.Id)
                     </ul>
@@ -38,7 +39,7 @@ foreach (var per in Model)
 <div id="sidebar">
     <a href="#" class="visible-phone"><i class="icon icon-home"></i></a>
     <ul>
-        <li class="active"><a href="#"><i class="icon icon-home"></i> <span>首页管理</span></a> </li>
+        <li class="" name="selectMenu"><a href="/Admin/Manage/Index"><i class="icon icon-home"></i> <span>首页管理</span></a> </li>
         @*<li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
             <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
             <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
@@ -90,4 +91,17 @@ foreach (var per in Model)
             </li>*@
         @MenuTree(1)
     </ul>
+    @*<script type="text/javascript">
+            onload = function () {
+                var liName = document.getElementsByName('selectMenu');
+                for (var i = 0; i < liName.length; i++) {
+                    liName[i].onclick = function () {
+                        for (var a = 0; a < liName.length; a++) {
+                            liName[a].className = "";
+                        }
+                        this.className = "active";
+                    }
+                }
+            }
+        </script>*@
 </div>

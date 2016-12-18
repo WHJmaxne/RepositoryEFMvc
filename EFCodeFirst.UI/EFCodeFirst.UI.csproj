@@ -135,6 +135,7 @@
     <Compile Include="Areas\Admin\Controllers\HeaderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Sys\Controllers\SysController.cs" />
     <Compile Include="Areas\Sys\SysAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BootStrap\css\bootstrap-pagination.css" />
     <Content Include="Content\BootStrap\css\bootstrap-theme.css" />
     <Content Include="Content\BootStrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\BootStrap\css\bootstrap.css" />
@@ -158,6 +160,7 @@
     <Content Include="Content\BootStrap\js\npm.js" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\qzonebg.gif" />
+    <Content Include="Content\jqPaginator\jqPaginator.min.js" />
     <Content Include="Content\JQSweetAlert\dist\sweetalert2.common.js" />
     <Content Include="Content\JQSweetAlert\dist\sweetalert2.css" />
     <Content Include="Content\JQSweetAlert\dist\sweetalert2.js" />
@@ -318,11 +321,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Areas\Admin\Views\Web.config" />
-    <Content Include="Content\BootStrap\css\bootstrap-theme.css.map" />
-    <Content Include="Content\BootStrap\css\bootstrap.css.map" />
-    <Content Include="Content\BootStrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\BootStrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\BootStrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Manage\Index.cshtml" />
@@ -346,9 +344,16 @@
     <Content Include="Areas\Admin\Views\Header\Header.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\Menu.cshtml" />
     <Content Include="Areas\Sys\Views\Web.config" />
-    <Content Include="Areas\Sys\Views\Sys\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Content\BootStrap\css\bootstrap-theme.css.map" />
+    <Content Include="Content\BootStrap\css\bootstrap.css.map" />
+    <Content Include="Content\BootStrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\BootStrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\BootStrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Views\User\Add.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

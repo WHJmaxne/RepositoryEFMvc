@@ -93,7 +93,7 @@ namespace EFCodeFirst.UI.Helper
             get
             {
                 HttpCookie cookie = Request.Cookies[userIdCookieKey];
-                if (cookie != null && cookie.Value.IsNullOrEmpty())
+                if (cookie != null && !cookie.Value.IsNullOrEmpty())
                 {
                     return Convert.ToInt32(cookie.Value);
                 }
@@ -213,6 +213,22 @@ namespace EFCodeFirst.UI.Helper
             get
             {
                 return session[perSessionKey] as IList<Permission>;
+            }
+        }
+        #endregion
+
+        #region 8.0 清空session和cookie
+        /// <summary>
+        /// 清空session和cookie
+        /// </summary>
+        public void OutLogin()
+        {
+            session.Abandon();
+            HttpCookie cookie = Request.Cookies[userIdCookieKey];
+            if (cookie != null && !cookie.Value.IsNullOrEmpty())
+            {
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(cookie);
             }
         }
         #endregion

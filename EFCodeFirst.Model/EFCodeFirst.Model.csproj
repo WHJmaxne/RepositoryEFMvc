@@ -55,6 +55,8 @@
     <Compile Include="FormatModel\AjaxMsgStatu.cs" />
     <Compile Include="FormatModel\PageModel.cs" />
     <Compile Include="Permission.cs" />
+    <Compile Include="POCO\Department.cs" />
+    <Compile Include="POCO\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="RolePer.cs" />
