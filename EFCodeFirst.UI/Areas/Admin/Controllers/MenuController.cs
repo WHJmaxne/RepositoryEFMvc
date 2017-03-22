@@ -1,4 +1,5 @@
-﻿using EFCodeFirst.UI.Controllers;
+﻿using EFCodeFirst.Common.Attr;
+using EFCodeFirst.UI.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace EFCodeFirst.UI.Areas.Admin.Controllers
     {
         //
         // GET: /Admin/Menu/
-        [Common.Attr.SkipPermission]
+        [SkipPermission]
         public PartialViewResult Index()
         {
             var pers = operContext.PerSession.OrderBy(p => p.POrder).ToList();

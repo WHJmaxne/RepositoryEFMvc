@@ -116,46 +116,51 @@
     <form class="form-horizontal" data-ajax="true" data-ajax-method="post" data-ajax-begin="Onbegin" data-ajax-complete="OnSuccess" id="form0">
 
         <div class="container-fluid">
+            @using (Ajax.BeginForm("", new { controller = "", area = "" }, new AjaxOptions()
+            {
+                HttpMethod = "post",
+                OnSuccess = "OnSuccess"
+            }))
+            {
+                <div class="formtop">
 
-            <div class="formtop">
-
-            </div>
-            <div class="formbody">
-                <br />
-                <div class="form-group">
-                    <span class="col-lg-offset-5 fontcss">Login For Your Account</span>
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-offset-4 col-lg-1 control-label" for="UserName">用户名</label>
-                    <div class="col-lg-2">
-                        <input type="text" name="UserName" id="UserName" value="admin" placeholder="UserName..." autocomplete="off" class="form-control" />
+                <div class="formbody">
+                    <br />
+                    <div class="form-group">
+                        <span class="col-lg-offset-5 fontcss">Login For Your Account</span>
                     </div>
-                    <span class="control-label forminfo" id="UserNameInfo"></span>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-offset-4 col-lg-1 control-label" for="UserPwd">密码</label>
-                    <div class="col-lg-2">
-                        <input type="password" name="UserPwd" id="UserPwd" value="admin" placeholder="UserPwd..." class="form-control" />
+                    <div class="form-group">
+                        <label class="col-lg-offset-4 col-lg-1 control-label" for="UserName">用户名</label>
+                        <div class="col-lg-2">
+                            <input type="text" name="UserName" id="UserName" value="admin" placeholder="UserName..." autocomplete="off" class="form-control" />
+                        </div>
+                        <span class="control-label forminfo" id="UserNameInfo"></span>
                     </div>
-                    <span class="control-label forminfo" id="UserPwdInfo"></span>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-offset-4 col-lg-1 control-label" for="ValidataNum">验证码</label>
-                    <div class="col-lg-1">
-                        <input type="text" name="ValidataNum" id="ValidataNum" placeholder="ValidataNum..." autocomplete="off" class="form-control" />
+                    <div class="form-group">
+                        <label class="col-lg-offset-4 col-lg-1 control-label" for="UserPwd">密码</label>
+                        <div class="col-lg-2">
+                            <input type="password" name="UserPwd" id="UserPwd" value="admin" placeholder="UserPwd..." class="form-control" />
+                        </div>
+                        <span class="control-label forminfo" id="UserPwdInfo"></span>
                     </div>
-                    <img src="/User/ValidataImage" id="valiImage" />
-                    <span class="control-label forminfo" id="ValidataInfo"></span>
+                    <div class="form-group">
+                        <label class="col-lg-offset-4 col-lg-1 control-label" for="ValidataNum">验证码</label>
+                        <div class="col-lg-1">
+                            <input type="text" name="ValidataNum" id="ValidataNum" placeholder="ValidataNum..." autocomplete="off" class="form-control" />
+                        </div>
+                        <img src="/User/ValidataImage" id="valiImage" />
+                        <span class="control-label forminfo" id="ValidataInfo"></span>
+                    </div>
+                    <div class="col-lg-offset-5">
+                        <input type="checkbox" name="RemUser" checked /><span>七天免登陆？</span>
+                        <button type="submit" id="LoginBtn" class="btn btn-primary"> 登陆<span class="glyphicon glyphicon-chevron-right"></span></button>
+                    </div>
                 </div>
-                <div class="col-lg-offset-5">
-                    <input type="checkbox" name="RemUser" checked /><span>七天免登陆？</span>
-                    <button type="submit" id="LoginBtn" class="btn btn-primary"> 登陆<span class="glyphicon glyphicon-chevron-right"></span></button>
+                <div class="formfoot">
+
                 </div>
-            </div>
-            <div class="formfoot">
-
-            </div>
-
+            }
         </div>
 
     </form>

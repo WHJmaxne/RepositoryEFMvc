@@ -4,14 +4,14 @@
  output extension=".cs"#>
 <#
 
-CodeGenerationTools code = new CodeGenerationTools(this);
-MetadataLoader loader = new MetadataLoader(this);
-CodeRegion region = new CodeRegion(this, 1);
-MetadataTools ef = new MetadataTools(this);
+				CodeGenerationTools code = new CodeGenerationTools(this);
+				MetadataLoader loader = new MetadataLoader(this);
+				CodeRegion region = new CodeRegion(this, 1);
+				MetadataTools ef = new MetadataTools(this);
 
-string namespaceName = code.VsNamespaceSuggestion();
+				string namespaceName = code.VsNamespaceSuggestion();
 
-EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+				EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 
 #>
 using System;
@@ -23,17 +23,17 @@ using System.Threading.Tasks;
 namespace EFCodeFirst.IDAL
 {
 <#
-// Emit Entity Types
-	string [] classNames={"UserInfo","Department","Role","Permission","UserVipPermission","UserRole","RolePer"};
-foreach (string className in classNames)
-{
-    //fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");
-    //BeginNamespace(namespaceName, code);    
+				// Emit Entity Types
+				string [] classNames={"UserInfo","Department","Role","Permission","UserVipPermission","UserRole","RolePer"};
+				foreach (string className in classNames)
+				{
+								//fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");
+								//BeginNamespace(namespaceName, code);    
 #>		
-	public partial interface I<#=className#>DAL :IBaseDAL<Model.<#=className#>>
+	public partial interface I<#=												className#>DAL :IBaseDAL<Model.<#=												className#>>
     {
 	 
     }
-<#}#>
+<#				}#>
 	
 }

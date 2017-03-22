@@ -55,7 +55,7 @@
                                 tr.insertCell(-1).innerHTML = jsonData.row[i].Department.DepName;
                                 tr.insertCell(-1).innerHTML = jsonData.row[i].UserTelephone;
                                 tr.insertCell(-1).innerHTML = jsonData.row[i].UserEmail;
-                                tr.insertCell(-1).innerHTML = jsonData.row[i].UserAddTime;
+                                tr.insertCell(-1).innerHTML = ((jsonData.row[i].UserAddTime).replace(/T/, ' ')).substring(0, 19);
                                 tr.insertCell(-1).innerHTML = jsonData.row[i].UserIsLock == 0 ? '否' : '是';
                             }
                         })
