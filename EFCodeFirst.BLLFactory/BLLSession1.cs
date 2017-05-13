@@ -102,5 +102,70 @@ namespace EFCodeFirst.BLLFactory
                 return _RolePerBLL;
             }
         }
+	
+		private IBillTypeBLL _BillTypeBLL;
+        public IBillTypeBLL BillTypeBLL
+        {
+            get
+            {
+                if(_BillTypeBLL == null)
+                {
+				    _BillTypeBLL =new BillTypeBLL();
+                }
+                return _BillTypeBLL;
+            }
+        }
+	
+		private ISupplierBLL _SupplierBLL;
+        public ISupplierBLL SupplierBLL
+        {
+            get
+            {
+                if(_SupplierBLL == null)
+                {
+				    _SupplierBLL =new SupplierBLL();
+                }
+                return _SupplierBLL;
+            }
+        }
+	
+		private ITApplyBLL _TApplyBLL;
+        public ITApplyBLL TApplyBLL
+        {
+            get
+            {
+                if(_TApplyBLL == null)
+                {
+				    _TApplyBLL =new TApplyBLL();
+                }
+                return _TApplyBLL;
+            }
+        }
+	
+		private ITapplyBillBLL _TapplyBillBLL;
+        public ITapplyBillBLL TapplyBillBLL
+        {
+            get
+            {
+                if(_TapplyBillBLL == null)
+                {
+				    _TapplyBillBLL =new TapplyBillBLL();
+                }
+                return _TapplyBillBLL;
+            }
+        }
+	
+		private ITapplySupplierBLL _TapplySupplierBLL;
+        public ITapplySupplierBLL TapplySupplierBLL
+        {
+            get
+            {
+                if(_TapplySupplierBLL == null)
+                {
+				    _TapplySupplierBLL =new TapplySupplierBLL();
+                }
+                return _TapplySupplierBLL;
+            }
+        }
 	}	
 }

@@ -57,33 +57,9 @@
     </Compile>
     <Compile Include="DbEFContext.cs" />
     <Compile Include="DbEFContextFactory.cs" />
-    <Compile Include="Migrations\201611220158316_InitialCreate.cs" />
-    <Compile Include="Migrations\201611220158316_InitialCreate.Designer.cs">
-      <DependentUpon>201611220158316_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611220202099_Initial.cs" />
-    <Compile Include="Migrations\201611220202099_Initial.Designer.cs">
-      <DependentUpon>201611220202099_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611220203569_Editp.cs" />
-    <Compile Include="Migrations\201611220203569_Editp.Designer.cs">
-      <DependentUpon>201611220203569_Editp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611220839458_Edit20161122.cs" />
-    <Compile Include="Migrations\201611220839458_Edit20161122.Designer.cs">
-      <DependentUpon>201611220839458_Edit20161122.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612060231380_edit01.cs" />
-    <Compile Include="Migrations\201612060231380_edit01.Designer.cs">
-      <DependentUpon>201612060231380_edit01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612120129467_edituserinfo.cs" />
-    <Compile Include="Migrations\201612120129467_edituserinfo.Designer.cs">
-      <DependentUpon>201612120129467_edituserinfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612120705190_whjedit01.cs" />
-    <Compile Include="Migrations\201612120705190_whjedit01.Designer.cs">
-      <DependentUpon>201612120705190_whjedit01.cs</DependentUpon>
+    <Compile Include="Migrations\201705110246026_initdatabase.cs" />
+    <Compile Include="Migrations\201705110246026_initdatabase.Designer.cs">
+      <DependentUpon>201705110246026_initdatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,26 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611220158316_InitialCreate.resx">
-      <DependentUpon>201611220158316_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611220202099_Initial.resx">
-      <DependentUpon>201611220202099_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611220203569_Editp.resx">
-      <DependentUpon>201611220203569_Editp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611220839458_Edit20161122.resx">
-      <DependentUpon>201611220839458_Edit20161122.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612060231380_edit01.resx">
-      <DependentUpon>201612060231380_edit01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612120129467_edituserinfo.resx">
-      <DependentUpon>201612120129467_edituserinfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612120705190_whjedit01.resx">
-      <DependentUpon>201612120705190_whjedit01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705110246026_initdatabase.resx">
+      <DependentUpon>201705110246026_initdatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

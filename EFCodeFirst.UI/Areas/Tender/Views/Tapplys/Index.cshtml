@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@using EFCodeFirst.Model.ViewModel;
+@model EFCodeFirst.Model.TApply
+<style type="text/css">
+    .bodycontent {
+        color: black;
+        margin-left: 50px;
+    }
+
+    .field-validation-error {
+        color: red;
+    }
+</style>
+@section headSection{
+    <script type="text/javascript">
+        $(function () {
+            ajaxSend();
+            $('#seachBtn').click(ajaxSend);
+        });
+        //ajax分页
+        function ajaxSend() {
+            var search = $('#seachName').val();
+            $.post("/Tender/Tapplys/Total", { "seachValue": search }, function (msg) {
+                var jsonMsg = JSON.parse(msg);
+                var pagesize = 10;
+                $('#pagination').jqPaginator({
+                    pageSize: pagesize,
+                    totalCounts: jsonMsg.total == 0 ? 1 : jsonMsg.total,
+                    visiblePages: 5,
+                    currentPage: 1,
+                    onPageChange: function (num, type) {
+                        $.post("/Tender/Tapplys/Index", { "pageIndex": num, "pageSize": pagesize, "seachValue": search }, function (data) {
+                            var jsonData = JSON.parse(data);
+                            var tablelist = document.getElementById('tableList');
+                            var tableBody = tablelist.getElementsByTagName('tbody')[0];
+                            tableBody.innerHTML = "";
+                            var xuhao = (num - 1) * pagesize;
+                            for (var i = 0; i < jsonData.row.length; i++) {
+                                xuhao += 1;
+                                var tr = tableBody.insertRow(-1);
+                                tr.insertCell(-1).innerHTML = xuhao;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].ApplyId;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].ApplyName;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].PlanType;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].ApplyState;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].ProjectType;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].ProjectManager;
+                                tr.insertCell(-1).innerHTML = ((jsonData.row[i].CreateTime).replace(/T/, ' ')).substring(0, 19);
+                            }
+                        })
+                    }
+                });
+            });
+        }
+
+        function AddComplete(msg) {
+            alert(msg);
+        }
+
+        //将序列化成json格式后日期(毫秒数)转成日期格式
+        function ChangeDateFormat(cellval) {
+            var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            return date.getFullYear() + "-" + month + "-" + currentDate;
+        }
+        //打开添加用户窗体
+        function onComplete() {
+            $('#myModal').modal('show');
+        }
+
+    </script>
+}
+
+@{
+    var mol = ViewBag.bread as ViewMenu;
+}
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@mol.url/@mol.Id" title="" class="tip-bottom"><i class="icon-home"></i> @mol.text</a></div>
+</div>
+<br />
+<div class="bodycontent">
+    <div class="row">
+        <a id="btnPerson" class="btn btn-lg btn-info" data-ajax="true" data-ajax-complete="onComplete" data-ajax-method="get" data-ajax-mode="replace" data-ajax-update="#modalContent" href="/Admin/User/Add"><span class="icon-plus"></span> 添加</a>
+        <button class="btn btn-danger"><span class="icon-minus"></span> 删除</button>
+        <div class="pull-right">
+            <input type="text" name="seachName" id="seachName" placeholder="用户名或姓名" />
+            <button class="btn btn-default" id="seachBtn" style="margin-top:-10px"><span class="icon-search"></span> 查询</button>
+        </div>
+    </div>
+    <div class="row">
+        <table id="tableList" class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>招标编号</td>
+                    <td>项目名称</td>
+                    <td>计划类型</td>
+                    <td>招标状态</td>
+                    <td>招标类型</td>
+                    <td>项目经理</td>
+                    <td>添加时间</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="row pull-right">
+        <ul class="pagination" id="pagination"></ul>
+    </div>
+
+    @*@Ajax.ActionLink("Add Person", "Add", new { area = "Admin", controller = "User" },new AjaxOptions() { HttpMethod = "get", UpdateTargetId = "modalContent", InsertionMode = InsertionMode.Replace, OnComplete = "onComplete" },new { id = "btnPerson", @class = "btn btn-lg btn-info" })*@
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modalContent">
+
+        </div>
+    </div>
+</div>

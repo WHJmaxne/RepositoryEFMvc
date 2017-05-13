@@ -1,4 +1,5 @@
 ﻿using EFCodeFirst.Common;
+using EFCodeFirst.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,16 @@ namespace EFCodeFirst.UI.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            //Department dep = new Department()
+            //{
+            //    DepAddTime = DateTime.Now,
+            //    DepIsdel = false,
+            //    DepName = "test",
+            //    DepParentId = 0,
+            //    DepRemark = "null"
+            //};
+            //operContext.BllSession.DepartmentBLL.AddEntity(dep);
+            //operContext.BllSession.SaveChanges();
             return View();
         }
 

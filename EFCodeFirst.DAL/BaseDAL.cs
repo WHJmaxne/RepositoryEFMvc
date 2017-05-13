@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EFCodeFirst.DAL
 {
-    public class BaseDAL<T> where T : class,new()
+    public class BaseDAL<T> where T : class, new()
     {
         DbContext db = DbEFContextFactory.CreatDbContext();
         public bool AddEntity(T entity)
@@ -24,7 +24,7 @@ namespace EFCodeFirst.DAL
             db.Set<T>().Remove(entity);
             return true;
         }
-       public bool DeleteList(System.Linq.Expressions.Expression<Func<T, bool>> where)
+        public bool DeleteList(Expression<Func<T, bool>> where)
         {
             var dbQuery = db.Set<T>();
             var entities = db.Set<T>().Where(where).ToList();
@@ -34,32 +34,32 @@ namespace EFCodeFirst.DAL
             }
             return true;
         }
-       public bool EditEntity(T entity, params string[] editNames)
-       {
-           DbEntityEntry entry = db.Entry<T>(entity);
-           entry.State = EntityState.Unchanged;
-           foreach (string editName in editNames)
-           {
-               entry.Property(editName).IsModified = true;
-           }
-           db.Configuration.ValidateOnSaveEnabled = false;
-           return true;
-       }
-       public bool EditList(Expression<Func<T, bool>> where, string[] editNames, object[] editValues)
-       {
-           var editList = db.Set<T>().Where(where).ToList();
-           Type t = typeof(T);
-           foreach (var item in editList)
-           {
-               for (int i = 0; i < editNames.Length; i++)
-               {
-                   string editName = editNames[i];
-                   PropertyInfo pi = t.GetProperty(editName);
-                   pi.SetValue(item, editValues[i], null);
-               }
-           }
-           return true;
-       }
+        public bool EditEntity(T entity, params string[] editNames)
+        {
+            DbEntityEntry entry = db.Entry<T>(entity);
+            entry.State = EntityState.Unchanged;
+            foreach (string editName in editNames)
+            {
+                entry.Property(editName).IsModified = true;
+            }
+            db.Configuration.ValidateOnSaveEnabled = false;
+            return true;
+        }
+        public bool EditList(Expression<Func<T, bool>> where, string[] editNames, object[] editValues)
+        {
+            var editList = db.Set<T>().Where(where).ToList();
+            Type t = typeof(T);
+            foreach (var item in editList)
+            {
+                for (int i = 0; i < editNames.Length; i++)
+                {
+                    string editName = editNames[i];
+                    PropertyInfo pi = t.GetProperty(editName);
+                    pi.SetValue(item, editValues[i], null);
+                }
+            }
+            return true;
+        }
         public IEnumerable<T> LoadEntities(Expression<Func<T, bool>> where)
         {
             var entities = db.Set<T>().Where(where);
@@ -83,7 +83,7 @@ namespace EFCodeFirst.DAL
             }
             return dbQuery.Where(where);
         }
-       public IEnumerable<T> LoadOrderIncludeEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
+        public IEnumerable<T> LoadOrderIncludeEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
         {
             var dbQuery = db.Set<T>();
             foreach (string includeName in includeNames)
@@ -97,50 +97,50 @@ namespace EFCodeFirst.DAL
                 temp = temp.OrderByDescending(order);
             return temp;
         }
-       public IEnumerable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, out int pageCount, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
-       {
-           var dbQuery = db.Set<T>();
-           foreach (string includeName in includeNames)
-           {
-               dbQuery.Include(includeName);
-           }
-           IOrderedQueryable<T> dbOrder = null;
-           if (isAsc)
-               dbOrder = dbQuery.OrderBy(order);
-           else
-               dbOrder = dbQuery.OrderBy(order);
-           var temp = dbOrder.Where(where).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-           totalCount = temp.Count();
-           pageCount = Convert.ToInt32(Math.Ceiling(totalCount * 1.0 / pageSize));
-           return temp;
-       }
-       public IEnumerable<T> LoadPageModelEntities<s>(Model.FormatModel.PageModel pageData, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
-       {
-           var dbQuery = db.Set<T>();
-           foreach (string includeName in includeNames)
-           {
-               dbQuery.Include(includeName);
-           }
-           IOrderedQueryable<T> dbOrder = null;
-           if (isAsc)
-               dbOrder = dbQuery.OrderBy(order);
-           else
-               dbOrder = dbQuery.OrderBy(order);
-           pageData.rows = dbOrder.Where(where).Skip((pageData.pageIndex - 1) * pageData.pageSize).Take(pageData.pageSize);
-           pageData.total = dbOrder.Where(where).Count();
+        public IEnumerable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, out int pageCount, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
+        {
+            var dbQuery = db.Set<T>();
+            foreach (string includeName in includeNames)
+            {
+                dbQuery.Include(includeName);
+            }
+            IOrderedQueryable<T> dbOrder = null;
+            if (isAsc)
+                dbOrder = dbQuery.OrderBy(order);
+            else
+                dbOrder = dbQuery.OrderBy(order);
+            var temp = dbOrder.Where(where).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            totalCount = temp.Count();
+            pageCount = Convert.ToInt32(Math.Ceiling(totalCount * 1.0 / pageSize));
+            return temp;
+        }
+        public IEnumerable<T> LoadPageModelEntities<s>(Model.FormatModel.PageModel pageData, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
+        {
+            var dbQuery = db.Set<T>();
+            foreach (string includeName in includeNames)
+            {
+                dbQuery.Include(includeName);
+            }
+            IOrderedQueryable<T> dbOrder = null;
+            if (isAsc)
+                dbOrder = dbQuery.OrderBy(order);
+            else
+                dbOrder = dbQuery.OrderBy(order);
+            pageData.rows = dbOrder.Where(where).Skip((pageData.pageIndex - 1) * pageData.pageSize).Take(pageData.pageSize);
+            pageData.total = dbOrder.Where(where).Count();
 
-           return pageData.rows as IEnumerable<T>;
-       }
-       public bool ExcuteSql(string strSql, params SqlParameter[] param)
-       {
-           db.Database.ExecuteSqlCommand(strSql, param);
-           return true;
-       }
-       public IEnumerable<T> ExcuteQuery<S>(string strSql, params SqlParameter[] param)
-       {
-           var temp = db.Database.SqlQuery<T>(strSql, param);
-           return temp;
-       }
-       
+            return pageData.rows as IEnumerable<T>;
+        }
+        public bool ExcuteSql(string strSql, params SqlParameter[] param)
+        {
+            db.Database.ExecuteSqlCommand(strSql, param);
+            return true;
+        }
+        public IEnumerable<T> ExcuteQuery<S>(string strSql, params SqlParameter[] param)
+        {
+            var temp = db.Database.SqlQuery<T>(strSql, param);
+            return temp;
+        }
+
     }
 }

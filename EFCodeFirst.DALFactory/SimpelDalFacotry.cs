@@ -53,6 +53,36 @@ namespace EFCodeFirst.DALFactory
             string classFulleName = AssNameSpace + ".RolePerDAL";
             return CreateInstance(classFulleName) as IRolePerDAL;
         }
+		
+	    public static IBillTypeDAL CreateBillTypeDAL()
+        {
+            string classFulleName = AssNameSpace + ".BillTypeDAL";
+            return CreateInstance(classFulleName) as IBillTypeDAL;
+        }
+		
+	    public static ISupplierDAL CreateSupplierDAL()
+        {
+            string classFulleName = AssNameSpace + ".SupplierDAL";
+            return CreateInstance(classFulleName) as ISupplierDAL;
+        }
+		
+	    public static ITApplyDAL CreateTApplyDAL()
+        {
+            string classFulleName = AssNameSpace + ".TApplyDAL";
+            return CreateInstance(classFulleName) as ITApplyDAL;
+        }
+		
+	    public static ITapplyBillDAL CreateTapplyBillDAL()
+        {
+            string classFulleName = AssNameSpace + ".TapplyBillDAL";
+            return CreateInstance(classFulleName) as ITapplyBillDAL;
+        }
+		
+	    public static ITapplySupplierDAL CreateTapplySupplierDAL()
+        {
+            string classFulleName = AssNameSpace + ".TapplySupplierDAL";
+            return CreateInstance(classFulleName) as ITapplySupplierDAL;
+        }
 	}
 	
 }

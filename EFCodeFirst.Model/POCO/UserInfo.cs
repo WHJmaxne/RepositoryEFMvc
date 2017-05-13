@@ -8,7 +8,7 @@ namespace EFCodeFirst.Model
 {
     public partial class UserInfo
     {
-        public UserInfo ToPOCO(bool isSelf)
+        public UserInfo ToPOCO()
         {
             return new UserInfo()
             {

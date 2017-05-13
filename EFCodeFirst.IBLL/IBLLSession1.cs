@@ -24,5 +24,15 @@ namespace EFCodeFirst.IBLL
 		IUserRoleBLL UserRoleBLL{get;}
 	
 		IRolePerBLL RolePerBLL{get;}
+	
+		IBillTypeBLL BillTypeBLL{get;}
+	
+		ISupplierBLL SupplierBLL{get;}
+	
+		ITApplyBLL TApplyBLL{get;}
+	
+		ITapplyBillBLL TapplyBillBLL{get;}
+	
+		ITapplySupplierBLL TapplySupplierBLL{get;}
 	}	
 }

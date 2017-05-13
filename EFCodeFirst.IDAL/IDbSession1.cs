@@ -24,5 +24,15 @@ namespace EFCodeFirst.IDAL
 		IUserRoleDAL UserRoleDAL{get;}
 	
 		IRolePerDAL RolePerDAL{get;}
+	
+		IBillTypeDAL BillTypeDAL{get;}
+	
+		ISupplierDAL SupplierDAL{get;}
+	
+		ITApplyDAL TApplyDAL{get;}
+	
+		ITapplyBillDAL TapplyBillDAL{get;}
+	
+		ITapplySupplierDAL TapplySupplierDAL{get;}
 	}	
 }

@@ -27,7 +27,7 @@ namespace EFCodeFirst.IBLL
     {
 <#
 // Emit Entity Types
-	string [] classNames={"UserInfo","Department","Role","Permission","UserVipPermission","UserRole","RolePer"};
+	string [] classNames={"UserInfo","Department","Role","Permission","UserVipPermission","UserRole","RolePer","BillType","Supplier","TApply","TapplyBill","TapplySupplier"};
 foreach (string className in classNames)
 {
     //fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");

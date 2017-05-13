@@ -9,6 +9,7 @@ namespace EFCodeFirst.Model
 {
     public partial class Permission
     {
+
         public ViewMenu ToMenu()
         {
             return new ViewMenu()

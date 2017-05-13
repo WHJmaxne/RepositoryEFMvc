@@ -21,7 +21,7 @@ namespace EFCodeFirst.UI.Filter
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             //创建要验证的区域名单
-            List<string> areasList = new List<string>() { "Admin", "Sys" };
+            List<string> areasList = new List<string>() { "Admin", "Sys", "Tender" };
             //验证当前请求的区域名是否在名单中
             //验证当前url是否存在区域
             if (filterContext.RouteData.DataTokens.ContainsKey("area"))

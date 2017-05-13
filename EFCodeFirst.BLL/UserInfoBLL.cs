@@ -30,7 +30,7 @@ namespace EFCodeFirst.BLL
             return null;
         }
         #endregion
-
+        //{"列名 'Department_Id' 无效。\r\n列名 'Department1_Id' 无效。"}
         #region 2.0 查询用户权限
         /// <summary>
         /// 查询用户权限

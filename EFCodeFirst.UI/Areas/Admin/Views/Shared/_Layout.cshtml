@@ -19,10 +19,10 @@
     @*<link href='http://fonts.useso.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>*@
 </head>
 <body>
-    @{ Html.RenderAction("Index", "Header");}
+    @{ Html.RenderAction("Index", "Header", new { area = "Admin" });}
     <div class="copyrights"></div>
     <!--sidebar-menu-->
-    @{ Html.RenderAction("Index", "Menu");}
+    @{ Html.RenderAction("Index", "Menu", new { area = "Admin" });}
     <!--sidebar-menu-->
     <div id="content">
         @RenderBody()

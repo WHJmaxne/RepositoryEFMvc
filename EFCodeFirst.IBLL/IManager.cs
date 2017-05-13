@@ -44,4 +44,29 @@ namespace EFCodeFirst.IBLL
        
     }   
 	
+	public partial interface IBillTypeBLL : IBaseBLL<BillType>
+    {
+       
+    }   
+	
+	public partial interface ISupplierBLL : IBaseBLL<Supplier>
+    {
+       
+    }   
+	
+	public partial interface ITApplyBLL : IBaseBLL<TApply>
+    {
+       
+    }   
+	
+	public partial interface ITapplyBillBLL : IBaseBLL<TapplyBill>
+    {
+       
+    }   
+	
+	public partial interface ITapplySupplierBLL : IBaseBLL<TapplySupplier>
+    {
+       
+    }   
+	
 }

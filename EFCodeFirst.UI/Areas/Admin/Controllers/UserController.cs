@@ -44,7 +44,7 @@ namespace EFCodeFirst.UI.Areas.Admin.Controllers
             {
                 list = operContext.BllSession.UserInfoBLL.LoadPageEntities(pageIndex, pageSize, out totalCount, out totalPage, u => u.UserIsDel == false, u => u.Id, true, "Department").ToList();
             }
-            var temp = list.Select(u => u.ToPOCO(true)).ToList();
+            var temp = list.Select(u => u.ToPOCO()).ToList();
             return Content(Common.SerializerHelper.SerializerToString(new { row = temp }));
         }
         [HttpGet]

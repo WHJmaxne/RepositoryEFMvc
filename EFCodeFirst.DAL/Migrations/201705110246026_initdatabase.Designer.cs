@@ -7,13 +7,13 @@ namespace EFCodeFirst.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class edituserinfo : IMigrationMetadata
+    public sealed partial class initdatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(edituserinfo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initdatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612120129467_edituserinfo"; }
+            get { return "201705110246026_initdatabase"; }
         }
         
         string IMigrationMetadata.Source

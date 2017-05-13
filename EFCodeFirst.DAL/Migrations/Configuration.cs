@@ -9,8 +9,7 @@ namespace EFCodeFirst.DAL.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "EFCodeFirst.DAL.DbEFContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(EFCodeFirst.DAL.DbEFContext context)

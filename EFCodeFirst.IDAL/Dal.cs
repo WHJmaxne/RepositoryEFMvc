@@ -42,5 +42,30 @@ namespace EFCodeFirst.IDAL
     {
 	 
     }
+		
+	public partial interface IBillTypeDAL :IBaseDAL<Model.BillType>
+    {
+	 
+    }
+		
+	public partial interface ISupplierDAL :IBaseDAL<Model.Supplier>
+    {
+	 
+    }
+		
+	public partial interface ITApplyDAL :IBaseDAL<Model.TApply>
+    {
+	 
+    }
+		
+	public partial interface ITapplyBillDAL :IBaseDAL<Model.TapplyBill>
+    {
+	 
+    }
+		
+	public partial interface ITapplySupplierDAL :IBaseDAL<Model.TapplySupplier>
+    {
+	 
+    }
 	
 }

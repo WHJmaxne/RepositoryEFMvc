@@ -1,0 +1,90 @@
+﻿@model EFCodeFirst.Model.TApply
+@using EFCodeFirst.Model.ViewModel;
+@{
+    ViewBag.Title = "AddTender";
+    var mol = ViewBag.bread as ViewMenu;
+}
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@mol.url/@mol.Id" title="" class="tip-bottom"><i class="icon-home"></i> @mol.text</a></div>
+</div>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <br />
+            <br />
+
+            <div class="row">
+                <div class="span6">
+                    @Html.DisplayNameFor(model => model.ApplyId)
+                    @Html.TextBoxFor(model => model.ApplyId, new { Value = "ZB" + DateTime.Now.ToString("yyyyMMddHHmmssffff"), @readonly = "true" })
+                    @Html.ValidationMessageFor(model => model.ApplyId)
+                </div>
+                <div class="span6">
+                    @Html.DisplayNameFor(model => model.ApplyName)
+                    @Html.EditorFor(model => model.ApplyName)
+                    @Html.ValidationMessageFor(model => model.ApplyName)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span6">
+                    @Html.DisplayNameFor(model => model.BillTypeId)
+                    @Html.DropDownListFor(model => model.BillTypeId, ViewBag.billtypes as IEnumerable<SelectListItem>)
+                    @Html.ValidationMessageFor(model => model.BillTypeId)
+                </div>
+                <div class="span6">
+                    @Html.DisplayNameFor(model => model.PlanType)
+                    @Html.DropDownListFor(model => model.PlanType, ViewBag.plantypes as IEnumerable<SelectListItem>)
+                    @Html.ValidationMessageFor(model => model.PlanType)
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span6">
+                    @Html.DisplayNameFor(model => model.ProjectType)
+                    @Html.DropDownListFor(model => model.ProjectType, ViewBag.projecttypes as IEnumerable<SelectListItem>)
+                    @Html.ValidationMessageFor(model => model.ProjectType)
+                </div>
+                <div class="span6">
+                    @Html.DisplayNameFor(model => model.ApplyUser)
+                    @Html.EditorFor(model => model.ApplyUser)
+                    @Html.ValidationMessageFor(model => model.ApplyUser)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span6">
+                    @Html.DisplayNameFor(model => model.ApplySum)
+                    @Html.EditorFor(model => model.ApplySum)
+                    @Html.ValidationMessageFor(model => model.ApplySum)
+                </div>
+                <div class="span6">
+                    @Html.DisplayNameFor(model => model.ExaminationUser)
+                    @Html.EditorFor(model => model.ExaminationUser)
+                    @Html.ValidationMessageFor(model => model.ExaminationUser)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    @Html.LabelFor(model => model.ApplyRemark)
+                    @*@Html.TextAreaFor(model => model.ApplyRemark, 5, 50, new { });*@
+                    <textarea id="ApplyRemark" name="ApplyRemark" rows="5" class="span9"></textarea>
+                    @Html.ValidationMessageFor(model => model.ApplyRemark)
+                </div>
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+</div>
+@section headSection{
+    @Scripts.Render("~/bundles/jqueryval")
+}

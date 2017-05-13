@@ -48,6 +48,14 @@
       <HintPath>..\EFCodeFirst.DAL\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -138,6 +146,8 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Sys\Controllers\SysController.cs" />
     <Compile Include="Areas\Sys\SysAreaRegistration.cs" />
+    <Compile Include="Areas\Tender\Controllers\TapplysController.cs" />
+    <Compile Include="Areas\Tender\TenderAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -264,6 +274,7 @@
     <Content Include="Content\NavIndex\css\style.css" />
     <Content Include="Content\NavIndex\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\NavIndex\js\index.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -351,6 +362,10 @@
     <Content Include="Content\BootStrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\BootStrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Admin\Views\User\Add.cshtml" />
+    <Content Include="Areas\Tender\Views\Web.config" />
+    <Content Include="Areas\Tender\Views\Tapplys\Index.cshtml" />
+    <Content Include="Areas\Tender\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Tender\Views\Tapplys\AddTender.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
@@ -390,6 +405,8 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Sys\Models\" />
     <Folder Include="Areas\Sys\Views\Shared\" />
+    <Folder Include="Areas\Tender\Models\" />
+    <Folder Include="Areas\Tender\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
