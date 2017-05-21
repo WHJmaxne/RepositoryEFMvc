@@ -11,10 +11,10 @@ namespace EFCodeFirst.Model.ExtensionModel
         /// <summary>
         /// 月度计划
         /// </summary>
-        Month,
+        Month = 1,
         /// <summary>
         /// 年度计划
         /// </summary>
-        Year
+        Year = 2
     }
 }

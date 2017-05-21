@@ -42,6 +42,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,10 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillType.cs" />
-    <Compile Include="Company.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="ExtensionModel\ApplyState.cs" />
     <Compile Include="ExtensionModel\CompanyState.cs" />
+    <Compile Include="ExtensionModel\CompanyType.cs" />
     <Compile Include="ExtensionModel\Permission.cs" />
     <Compile Include="ExtensionModel\PlanType.cs" />
     <Compile Include="ExtensionModel\ProjectType.cs" />
@@ -63,7 +64,10 @@
     <Compile Include="Permission.cs" />
     <Compile Include="POCO\BillType.cs" />
     <Compile Include="POCO\Department.cs" />
+    <Compile Include="POCO\Role.cs" />
+    <Compile Include="POCO\Supplier.cs" />
     <Compile Include="POCO\TApply.cs" />
+    <Compile Include="POCO\TapplyBill.cs" />
     <Compile Include="POCO\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />

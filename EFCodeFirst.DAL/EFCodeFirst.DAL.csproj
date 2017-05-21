@@ -61,6 +61,38 @@
     <Compile Include="Migrations\201705110246026_initdatabase.Designer.cs">
       <DependentUpon>201705110246026_initdatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705140626372_addroletapply.cs" />
+    <Compile Include="Migrations\201705140626372_addroletapply.Designer.cs">
+      <DependentUpon>201705140626372_addroletapply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705140651465_updatedatabase.cs" />
+    <Compile Include="Migrations\201705140651465_updatedatabase.Designer.cs">
+      <DependentUpon>201705140651465_updatedatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705140820493_tapplybilldisplayname.cs" />
+    <Compile Include="Migrations\201705140820493_tapplybilldisplayname.Designer.cs">
+      <DependentUpon>201705140820493_tapplybilldisplayname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705141057006_addprice.cs" />
+    <Compile Include="Migrations\201705141057006_addprice.Designer.cs">
+      <DependentUpon>201705141057006_addprice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705141120140_addUnit.cs" />
+    <Compile Include="Migrations\201705141120140_addUnit.Designer.cs">
+      <DependentUpon>201705141120140_addUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705141355152_addunitreq.cs" />
+    <Compile Include="Migrations\201705141355152_addunitreq.Designer.cs">
+      <DependentUpon>201705141355152_addunitreq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705141534276_supertype.cs" />
+    <Compile Include="Migrations\201705141534276_supertype.Designer.cs">
+      <DependentUpon>201705141534276_supertype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705161522533_addCommandIds.cs" />
+    <Compile Include="Migrations\201705161522533_addCommandIds.Designer.cs">
+      <DependentUpon>201705161522533_addCommandIds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,6 +119,30 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705110246026_initdatabase.resx">
       <DependentUpon>201705110246026_initdatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705140626372_addroletapply.resx">
+      <DependentUpon>201705140626372_addroletapply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705140651465_updatedatabase.resx">
+      <DependentUpon>201705140651465_updatedatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705140820493_tapplybilldisplayname.resx">
+      <DependentUpon>201705140820493_tapplybilldisplayname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705141057006_addprice.resx">
+      <DependentUpon>201705141057006_addprice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705141120140_addUnit.resx">
+      <DependentUpon>201705141120140_addUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705141355152_addunitreq.resx">
+      <DependentUpon>201705141355152_addunitreq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705141534276_supertype.resx">
+      <DependentUpon>201705141534276_supertype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705161522533_addCommandIds.resx">
+      <DependentUpon>201705161522533_addCommandIds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

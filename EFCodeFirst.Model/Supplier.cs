@@ -1,5 +1,7 @@
-﻿using System;
+﻿using EFCodeFirst.Model.ExtensionModel;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EFCodeFirst.Model
 {
-    public class Supplier
+    public partial class Supplier
     {
         public Supplier()
         {
@@ -25,7 +27,7 @@ namespace EFCodeFirst.Model
         /// <summary>
         /// 供应商名称
         /// </summary>
-        [Required, MaxLength(200)]
+        [Required, MaxLength(200), DisplayName("供应商名称")]
         public string Name { get; set; }
         /// <summary>
         /// 登录用户名
@@ -44,14 +46,15 @@ namespace EFCodeFirst.Model
         public string UserName { get; set; }
         /// <summary>
         /// 供应商状态:
-        /// 1:已注册
-        /// 2:已上传资质文件
-        /// 3:已通过
+        /// 1.预备供应商
+        /// 2.正式供应商
         /// </summary>
-        public int SupplierState { get; set; }
+        [DisplayName("供应商状态")]
+        public CompanyState SupplierState { get; set; }
         /// <summary>
         /// 是否允许投标
         /// </summary>
+        [DisplayName("是否允许投标")]
         public bool IsBid { get; set; }
         /// <summary>
         /// 添加时间
@@ -65,8 +68,7 @@ namespace EFCodeFirst.Model
         /// <summary>
         /// 企业类型
         /// </summary>
-        [Required, MaxLength(50)]
-        public string SupplierType { get; set; }
+        public CompanyType SupplierType { get; set; }
         /// <summary>
         /// 电子邮件
         /// </summary>

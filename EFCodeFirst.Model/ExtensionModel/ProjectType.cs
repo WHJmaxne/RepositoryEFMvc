@@ -11,10 +11,10 @@ namespace EFCodeFirst.Model.ExtensionModel
         /// <summary>
         /// 公开招标
         /// </summary>
-        Open,
+        Open = 1,
         /// <summary>
         /// 邀请招标
         /// </summary>
-        Invitation
+        Invitation = 2
     }
 }

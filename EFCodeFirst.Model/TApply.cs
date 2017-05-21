@@ -14,7 +14,6 @@ namespace EFCodeFirst.Model
     {
         public TApply()
         {
-            TapplyBills = new HashSet<TapplyBill>();
             TapplySuppliers = new HashSet<TapplySupplier>();
         }
         /// <summary>
@@ -48,12 +47,6 @@ namespace EFCodeFirst.Model
         public PlanType PlanType { get; set; }
         /// <summary>
         /// 委托状态
-        /// 1、待审核
-        /// 2、待分派
-        /// 3、受理中
-        /// 4、发布中
-        /// 5、已发布
-        /// 6、已驳回
         /// </summary>
         [DisplayName("委托状态")]
         public ApplyState ApplyState { get; set; }
@@ -76,7 +69,7 @@ namespace EFCodeFirst.Model
         /// 审核人员
         /// </summary>
         [DisplayName("审核人员")]
-        public int? ExaminationUser { get; set; }
+        public int ExaminationUser { get; set; }
         /// <summary>
         /// 项目经理
         /// </summary>
@@ -107,7 +100,8 @@ namespace EFCodeFirst.Model
         /// </summary>
         [DisplayName("指派完成时间")]
         public DateTime? AssignTime { get; set; }
-
+        [NotMapped]
+        public string CompanyIds { get; set; }
 
         /// <summary>
         /// 项目经理
@@ -123,9 +117,8 @@ namespace EFCodeFirst.Model
         /// 审核人员
         /// </summary>
         [ForeignKey("ExaminationUser")]
-        public virtual UserInfo UserInfo2 { get; set; }
+        public virtual Role Role { get; set; }
         public virtual BillType BillType { get; set; }
-        public virtual ICollection<TapplyBill> TapplyBills { get; set; }
         public virtual ICollection<TapplySupplier> TapplySuppliers { get; set; }
     }
 }

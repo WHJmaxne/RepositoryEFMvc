@@ -14,6 +14,8 @@
     }
 </style>
 @section headSection{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/ModalForm.js"></script>
     <script type="text/javascript">
         $(function () {
             ajaxSend();
@@ -43,18 +45,80 @@
                                 tr.insertCell(-1).innerHTML = xuhao;
                                 tr.insertCell(-1).innerHTML = jsonData.row[i].ApplyId;
                                 tr.insertCell(-1).innerHTML = jsonData.row[i].ApplyName;
-                                tr.insertCell(-1).innerHTML = jsonData.row[i].PlanType;
-                                tr.insertCell(-1).innerHTML = jsonData.row[i].ApplyState;
-                                tr.insertCell(-1).innerHTML = jsonData.row[i].ProjectType;
-                                tr.insertCell(-1).innerHTML = jsonData.row[i].ProjectManager;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].PlanType == 1 ? "月度计划" : "年度计划";
+                                tr.insertCell(-1).innerHTML = GetAppState(jsonData.row[i].ApplyState);
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].ProjectType == 1 ? "公开招标" : "邀请招标";
+                                tr.insertCell(-1).innerHTML = GetProName(jsonData.row[i].UserInfo.RealName);
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].Role.RoleName;
                                 tr.insertCell(-1).innerHTML = ((jsonData.row[i].CreateTime).replace(/T/, ' ')).substring(0, 19);
+                                tr.insertCell(-1).innerHTML = '<a href="javascript:DeleteTapply(' + jsonData.row[i].Id + ')" class="btn btn-danger"><span class="icon-remove"></span></a><a href="javascript:DetailTapply(' + jsonData.row[i].Id + ')" class="btn btn-info"><span class="icon-search"></span></a>';
                             }
                         })
                     }
                 });
             });
         }
-
+        function DeleteTapply(id) {
+            layer.confirm('您确定要删除吗？', { icon: 2, title: '警告' }, function (index) {
+                layer.close(index);
+                debugger;
+                //alert(id);
+                $.ajax({
+                    type: "post",
+                    url: "/Tender/Tapplys/DeleteTapply",
+                    data: { "Id": id },
+                    success: function (result) {
+                        var resarr = result.split(':');
+                        if (resarr[0] == 'yes') {
+                            toastr.success(resarr[1]);
+                            ajaxSend();
+                        } else {
+                            toastr.error(resarr[1]);
+                        }
+                    },
+                    error: function () {
+                        toastr.error('网络错误，请重新提交！');
+                    }
+                });
+            });
+        }
+        function DetailTapply(id) {
+            var actionUrl = "@Url.Action("Detail")";
+            var param = { 'Id': id };
+            ShowModal(actionUrl, param, "招标委托详情");
+        }
+        function GetAppState(id) {
+            var result;
+            if (id == 1) {
+                result = '<span class="label label-info">待审核</span>';
+            }
+            else if (id == 2) {
+                result = '<span class="label label-info">待分派</span>';
+            }
+            else if (id == 3) {
+                result = '<span class="label label-info">待受理</span>';
+            }
+            else if (id == 4) {
+                result = '<span class="label label-info">待发布</span>';
+            }
+            else if (id == 5) {
+                result = '<span class="label label-success">已完成</span>';
+            }
+            else if (id == 6) {
+                result = '<span class="label label-warning">以驳回</span>';
+            } else {
+                result = '<span class="label label-important">状态异常</span>';
+                return result;
+            }
+            return result;
+        }
+        function GetProName(name) {
+            var result = name;
+            if (name == "未分配") {
+                result = '<span class="label label-important">未分配</span>';
+            }
+            return result;
+        }
         function AddComplete(msg) {
             alert(msg);
         }
@@ -101,7 +165,9 @@
                     <td>招标状态</td>
                     <td>招标类型</td>
                     <td>项目经理</td>
+                    <td>审核人员</td>
                     <td>添加时间</td>
+                    <td>操作</td>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -113,10 +179,5 @@
 
     @*@Ajax.ActionLink("Add Person", "Add", new { area = "Admin", controller = "User" },new AjaxOptions() { HttpMethod = "get", UpdateTargetId = "modalContent", InsertionMode = InsertionMode.Replace, OnComplete = "onComplete" },new { id = "btnPerson", @class = "btn btn-lg btn-info" })*@
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" id="modalContent">
+@Html.Partial("_IndexModalForm")
 
-        </div>
-    </div>
-</div>

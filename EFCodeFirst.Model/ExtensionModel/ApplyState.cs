@@ -11,11 +11,26 @@ namespace EFCodeFirst.Model.ExtensionModel
         /// <summary>
         /// 待审核
         /// </summary>
-        PendingAudit,
+        PendingAudit = 1,
         /// <summary>
         /// 待分派
         /// </summary>
-        PendingAssignment
-
+        PendingAssignment = 2,
+        /// <summary>
+        /// 待受理
+        /// </summary>
+        PendingAcceptance = 3,
+        /// <summary>
+        /// 待发布
+        /// </summary>
+        PendingRelease = 4,
+        /// <summary>
+        /// 已完成
+        /// </summary>
+        Completed = 5,
+        /// <summary>
+        /// 以驳回
+        /// </summary>
+        Rejected = 6
     }
 }

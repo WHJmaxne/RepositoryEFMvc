@@ -10,30 +10,64 @@ namespace EFCodeFirst.Model
     {
         public TApply ToPOCO()
         {
-            return new TApply()
+
+            if (this.UserInfo == null)
             {
-                ApplyState = this.ApplyState,
-                ApplySum = this.ApplySum,
-                ApplyId = this.ApplyId,
-                ApplyName = this.ApplyName,
-                ApplyRemark = this.ApplyRemark,
-                ApplyUser = this.ApplyUser,
-                AssignTime = this.AssignTime,
-                BillTypeId = this.BillTypeId,
-                BillType = this.BillType.ToPOCO(),
-                CreateTime = this.CreateTime,
-                ExaminationUser = this.ExaminationUser,
-                Id = this.Id,
-                IsDelete = this.IsDelete,
-                UserInfo = this.UserInfo.ToPOCO(),
-                NoticeTime = this.NoticeTime,
-                PlanType = this.PlanType,
-                ProjectManager = this.ProjectManager,
-                ProjectType = this.ProjectType,
-                ReviewTime = this.ReviewTime,
-                UserInfo1 = this.UserInfo1.ToPOCO(),
-                UserInfo2 = this.UserInfo2.ToPOCO()
-            };
+                EFCodeFirst.Model.UserInfo user = new UserInfo();
+                user.RealName = "未分配";
+                return new TApply()
+                {
+                    ApplyState = this.ApplyState,
+                    ApplySum = this.ApplySum,
+                    ApplyId = this.ApplyId,
+                    ApplyName = this.ApplyName,
+                    ApplyRemark = this.ApplyRemark,
+                    ApplyUser = this.ApplyUser,
+                    AssignTime = this.AssignTime,
+                    BillTypeId = this.BillTypeId,
+                    BillType = this.BillType.ToPOCO(),
+                    CreateTime = this.CreateTime,
+                    ExaminationUser = this.ExaminationUser,
+                    Id = this.Id,
+                    IsDelete = this.IsDelete,
+                    UserInfo = user,
+                    NoticeTime = this.NoticeTime,
+                    PlanType = this.PlanType,
+                    ProjectManager = this.ProjectManager,
+                    ProjectType = this.ProjectType,
+                    ReviewTime = this.ReviewTime,
+                    UserInfo1 = this.UserInfo1.ToPOCO(),
+                    Role = this.Role.ToPOCO()
+                };
+            }
+            else
+            {
+                return new TApply()
+                {
+                    ApplyState = this.ApplyState,
+                    ApplySum = this.ApplySum,
+                    ApplyId = this.ApplyId,
+                    ApplyName = this.ApplyName,
+                    ApplyRemark = this.ApplyRemark,
+                    ApplyUser = this.ApplyUser,
+                    AssignTime = this.AssignTime,
+                    BillTypeId = this.BillTypeId,
+                    BillType = this.BillType.ToPOCO(),
+                    CreateTime = this.CreateTime,
+                    ExaminationUser = this.ExaminationUser,
+                    Id = this.Id,
+                    IsDelete = this.IsDelete,
+                    UserInfo = this.UserInfo.ToPOCO(),
+                    NoticeTime = this.NoticeTime,
+                    PlanType = this.PlanType,
+                    ProjectManager = this.ProjectManager,
+                    ProjectType = this.ProjectType,
+                    ReviewTime = this.ReviewTime,
+                    UserInfo1 = this.UserInfo1.ToPOCO(),
+                    Role = this.Role.ToPOCO()
+                };
+            }
+
         }
     }
 }

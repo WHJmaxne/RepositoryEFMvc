@@ -1,90 +1,493 @@
 ﻿@model EFCodeFirst.Model.TApply
 @using EFCodeFirst.Model.ViewModel;
+@using EFCodeFirst.Model;
 @{
     ViewBag.Title = "AddTender";
     var mol = ViewBag.bread as ViewMenu;
+    var user = ViewBag.User as UserInfo;
 }
 <div id="content-header">
     <div id="breadcrumb"> <a href="@mol.url/@mol.Id" title="" class="tip-bottom"><i class="icon-home"></i> @mol.text</a></div>
 </div>
-<div class="container">
-    @using (Html.BeginForm())
+<div class="container" style="font-size:15px;">
+
+    @using (Html.BeginForm("AddTender", "Tapplys", FormMethod.Post, new { area = "Tender", id = "addTender" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-
-        <fieldset>
-            <br />
-            <br />
-
-            <div class="row">
-                <div class="span6">
+        <br />
+        <div class="alert alert-success">
+            <strong>招标委托信息</strong>
+        </div>
+        <br />
+        <div class="row">
+            <div class="span6">
+                <div class="span1">
                     @Html.DisplayNameFor(model => model.ApplyId)
-                    @Html.TextBoxFor(model => model.ApplyId, new { Value = "ZB" + DateTime.Now.ToString("yyyyMMddHHmmssffff"), @readonly = "true" })
-                    @Html.ValidationMessageFor(model => model.ApplyId)
                 </div>
-                <div class="span6">
+                @*+ DateTime.Now.ToString("yyyyMMddHHmmssffff")*@
+                @Html.TextBoxFor(model => model.ApplyId, new { Value = "ZB201705171002583194", @readonly = "true" })
+                @Html.ValidationMessageFor(model => model.ApplyId)
+            </div>
+            <div class="span6">
+                <div class="span1">
                     @Html.DisplayNameFor(model => model.ApplyName)
-                    @Html.EditorFor(model => model.ApplyName)
-                    @Html.ValidationMessageFor(model => model.ApplyName)
                 </div>
+                @Html.EditorFor(model => model.ApplyName)
+                @Html.ValidationMessageFor(model => model.ApplyName)
             </div>
-
-            <div class="row">
-                <div class="span6">
+        </div>
+        <br />
+        <div class="row">
+            <div class="span6">
+                <div class="span1">
                     @Html.DisplayNameFor(model => model.BillTypeId)
-                    @Html.DropDownListFor(model => model.BillTypeId, ViewBag.billtypes as IEnumerable<SelectListItem>)
-                    @Html.ValidationMessageFor(model => model.BillTypeId)
                 </div>
-                <div class="span6">
+                @Html.DropDownListFor(model => model.BillTypeId, ViewBag.billtypes as IEnumerable<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.BillTypeId)
+            </div>
+            <div class="span6">
+                <div class="span1">
                     @Html.DisplayNameFor(model => model.PlanType)
-                    @Html.DropDownListFor(model => model.PlanType, ViewBag.plantypes as IEnumerable<SelectListItem>)
-                    @Html.ValidationMessageFor(model => model.PlanType)
-
                 </div>
-            </div>
+                @Html.DropDownListFor(model => model.PlanType, ViewBag.plantypes as IEnumerable<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.PlanType)
 
-            <div class="row">
-                <div class="span6">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="span6">
+                <div class="span1">
                     @Html.DisplayNameFor(model => model.ProjectType)
-                    @Html.DropDownListFor(model => model.ProjectType, ViewBag.projecttypes as IEnumerable<SelectListItem>)
-                    @Html.ValidationMessageFor(model => model.ProjectType)
                 </div>
-                <div class="span6">
+                @Html.DropDownListFor(model => model.ProjectType, ViewBag.projecttypes as IEnumerable<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.ProjectType)
+            </div>
+            <div class="span6">
+                <div class="span1">
                     @Html.DisplayNameFor(model => model.ApplyUser)
-                    @Html.EditorFor(model => model.ApplyUser)
-                    @Html.ValidationMessageFor(model => model.ApplyUser)
                 </div>
+                <input type="text" name="name" value="@user.RealName" readonly />
+                <input type="hidden" name="ApplyUser" value="@user.Id" />
+                @Html.ValidationMessageFor(model => model.ApplyUser)
             </div>
-
-            <div class="row">
-                <div class="span6">
+        </div>
+        <br />
+        <div class="row">
+            <div class="span6">
+                <div class="span1">
                     @Html.DisplayNameFor(model => model.ApplySum)
-                    @Html.EditorFor(model => model.ApplySum)
-                    @Html.ValidationMessageFor(model => model.ApplySum)
                 </div>
-                <div class="span6">
+                @Html.EditorFor(model => model.ApplySum)
+                @Html.ValidationMessageFor(model => model.ApplySum)
+            </div>
+            <div class="span6">
+                <div class="span1">
                     @Html.DisplayNameFor(model => model.ExaminationUser)
-                    @Html.EditorFor(model => model.ExaminationUser)
-                    @Html.ValidationMessageFor(model => model.ExaminationUser)
                 </div>
+                @Html.DropDownListFor(model => model.ExaminationUser, ViewBag.ExtenUser as IEnumerable<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.ExaminationUser)
             </div>
-
-            <div class="row">
-                <div class="span12">
-                    @Html.LabelFor(model => model.ApplyRemark)
-                    @*@Html.TextAreaFor(model => model.ApplyRemark, 5, 50, new { });*@
-                    <textarea id="ApplyRemark" name="ApplyRemark" rows="5" class="span9"></textarea>
-                    @Html.ValidationMessageFor(model => model.ApplyRemark)
+        </div>
+        <br />
+        <div class="row">
+            <div class="span12">
+                <div class="span1">
+                    @Html.DisplayNameFor(model => model.ApplyRemark)
                 </div>
+                @*@Html.TextAreaFor(model => model.ApplyRemark, 5, 50, new { });*@
+                <textarea id="ApplyRemark" name="ApplyRemark" rows="5" class="span8"></textarea>
+                @Html.ValidationMessageFor(model => model.ApplyRemark)
             </div>
-
-            <p>
-                <input type="submit" value="Create" />
-            </p>
-        </fieldset>
+        </div>
+        <br />
+        <input type="hidden" id="CompanyIds" name="CompanyIds" value="" />
     }
+    <br />
+    <hr />
+    <div class="alert alert-info">
+        <strong>物料列表</strong>
+    </div>
+    <div id="toolbar" class="btn-group" role="group">
+        <button id="btn_add" type="button" class="btn btn-info">
+            <span class="icon-plus"></span>添加物料
+        </button>
+        <button class="btn btn-danger" id="deletebill"><span class="icon-minus"></span> 删除</button>
+        @*<button id="btn_edit" type="button" class="btn btn-warning">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </button>
+            <button id="btn_delete" type="button" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+            <button id="btn_reset" type="button" class="btn btn-info">
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+            </button>*@
+    </div>
+    <div>
+        <table id="billlist" class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <td><input type="checkbox" id="AllCheck" name="AllCheck" value="" /></td>
+                    <td>序号</td>
+                    <td>物料名称</td>
+                    <td>物料规格</td>
+                    <td>物料材质</td>
+                    <td>单位</td>
+                    <td>数量</td>
+                    <td>单价</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <ul class="pagination" id="pagination"></ul>
+        <div>
+
+        </div>
+    </div>
+
+    <br />
+    <hr />
+    <div class="alert alert-warning">
+        <strong>供应商列表</strong>
+    </div>
+    <div id="toolbar" class="btn-group" role="group">
+        <button id="btn_addcom" type="button" class="btn btn-info">
+            <span class="icon-plus"></span>选择供应商
+        </button>
+    </div>
+    <div>
+        <table id="companylist" class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>供应商名称</td>
+                    <td>联系人</td>
+                    <td>供应商状态</td>
+                    <td>是否允许投标</td>
+                    <td>企业类型</td>
+                    <td>联系电话</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <ul class="pagination" id="companypage"></ul>
+    </div>
+    <div class="row-fluid">
+        <button type="button" class="btn btn-success btn-lg offset5" id="SubmitTender">确认提交</button>
+    </div>
+    <br />
+    <br />
+    @Html.Partial("_ModalForm")
 </div>
 @section headSection{
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/ModalForm.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            if (typeof (Storage) !== "undefined") {
+                localStorage.removeItem('Company')
+            }
+            $('#SubmitTender').click(function () {
+                debugger;
+                var actionUrl = $("#addTender").attr("action");
+                var $form = $("#addTender");
+                if (!$form.valid()) {
+                    return;
+                }
+
+                var billlist = document.getElementById('billlist');
+                var tableBody = billlist.getElementsByTagName('tbody')[0];
+                var tbodyTr = tableBody.getElementsByTagName('tr');
+                if (tbodyTr == null || tbodyTr.length <= 0) {
+                    toastr.error("请至少添加一种物料信息！");
+                    return;
+                }
+
+                var projecttype = $('#ProjectType').val();
+                var comids = localStorage.getItem('Company');
+                $('#CompanyIds').val(comids);
+                if (projecttype == 2) {
+
+                    if (comids == null || comids.length <= 0) {
+                        toastr.error("邀请招标必须选择三个或三个以上供应商！");
+                        return;
+                    }
+                    var idArr = comids.split(',');
+                    if (idArr.length < 4) {
+                        toastr.error("邀请招标必须选择三个或三个以上供应商！");
+                        return;
+                    }
+                }
+
+
+                layer.confirm('确定要将该招标信息提交审核吗？', { icon: 3, title: '提示' }, function (index) {
+                    layer.close(index);
+                    $.ajax({
+                        type: "POST",
+                        url: actionUrl,
+                        data: $form.serialize(),
+                        success: function (result) {
+                            var resarr = result.split(':');
+                            if (resarr[0] == 'yes') {
+                                toastr.success(resarr[1]);
+                                setTimeout(function () {
+                                    location.href = actionUrl;
+                                }, 1000);
+                            }
+                            else {
+                                toastr.error(resarr[1]);
+                            }
+                        },
+                        error: function () {
+                            toastr.error('网络错误，请重新提交！');
+                        }
+                    });
+                });
+            });
+
+            //GetBillList();
+            //删除物料
+            $('#deletebill').click(function () {
+                var text = "";
+                $("input[name='billcheck']").each(function () {
+                    if (this.checked) {
+                        text += this.value + ',';
+                    }
+                });
+                if (text.length <= 0) {
+                    toastr.error("没有选中行！");
+                    return;
+                }
+                layer.confirm('您确定要删除选中行吗？', { icon: 2, title: '警告' }, function (index) {
+                    layer.close(index);
+                    $.ajax({
+                        type: "GET",
+                        url: "/Tender/Tapplys/DeleteBills",
+                        data: { "Ids": text },
+                        success: function (result) {
+                            var resarr = result.split(':');
+                            if (resarr[0] == 'yes') {
+                                toastr.success(resarr[1]);
+                                GetBillList();
+                            } else {
+                                toastr.error(resarr[1]);
+                            }
+                        },
+                        error: function () {
+                            toastr.error('网络错误，请重新提交！');
+                        }
+                    });
+                });
+
+            });
+            //物料列表全选
+            $('#AllCheck').click(function () {
+                var checkboxs = $("input[name='billcheck']");
+                if (this.checked) {
+                    checkboxs.removeAttr('checked');
+                    checkboxs.prop('checked', 'checked');
+                } else {
+                    checkboxs.removeAttr('checked');
+                }
+            });
+            //供应商列表全选
+            $('#AllCheckCompany').click(function () {
+                var checkboxs = $("input[name='companycheck']");
+                if (this.checked) {
+                    checkboxs.removeAttr('checked');
+                    checkboxs.prop('checked', 'checked');
+                } else {
+                    checkboxs.removeAttr('checked');
+                }
+            });
+
+            //新增物料
+            $("#btn_add").click(function () {
+                isAddbill = true;
+                var applynum = $("#ApplyId").val();
+                var billtype = $('#BillTypeId').val();
+                if (billtype.length <= 0 || billtype == null) {
+                    toastr.error("请选择物料类别！")
+                }
+                var actionUrl = "@Url.Action("Create")";
+                var param = { 'ApplyNum': applynum, "BillType": billtype };
+                ShowModal(actionUrl, param, "添加物料");
+            });
+
+            //选择供应商
+            $("#btn_addcom").click(function () {
+                isAddbill = false;
+                var actionUrl = "@Url.Action("SelectCompany")";
+                var param = {};
+                ShowModal(actionUrl, param, "选择供应商");
+            });
+        });
+        var isAddbill;
+        $("#btnSave").click(function () {
+            if (isAddbill) {
+                var actionUrl = $("#modal-content").attr("action");
+                var $form = $("#modal-content");
+                if (!$form.valid()) {
+                    return;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: actionUrl,
+                    data: $form.serialize(),
+                    success: function (result) {
+                        var resarr = result.split(':');
+                        if (resarr[0] == 'yes') {
+                            toastr.success(resarr[1]);
+                            $('#modal-form').modal('hide');
+                            //GetBillList();
+                            ajax(1);
+                        }
+                        else {
+                            toastr.error(resarr[1]);
+                        }
+                    },
+                    error: function () {
+                        toastr.error('网络错误，请重新提交！');
+                    }
+                });
+            } else {
+                debugger;
+                var text = "";
+                $("input[name='selectcom']").each(function () {
+                    if (this.checked) {
+                        text += this.value + ',';
+                    }
+                });
+                if (text.length <= 0) {
+                    toastr.error("没有选中行！");
+                    return;
+                }
+                $('#modal-form').modal('hide');
+                if (typeof (Storage) !== "undefined") {
+                    localStorage.setItem('Company', text);
+                }
+                GetCompanyList(text);
+            }
+        });
+
+        function GetBillList() {
+            var search = $('#ApplyId').val();
+            $.post("/Tender/Tapplys/BillTotal", { "seachValue": search }, function (msg) {
+                var jsonMsg = JSON.parse(msg);
+                var pagesize = 5;
+                $('#pagination').jqPaginator({
+                    pageSize: pagesize,
+                    totalCounts: jsonMsg.total == 0 ? 1 : jsonMsg.total,
+                    visiblePages: 5,
+                    currentPage: 1,
+                    first: '<li class="first"><a href="javascript:void(0);">首页<\/a><\/li>',
+                    prev: '<li class="prev"><a href="javascript:void(0);">上一页<\/a><\/li>',
+                    next: '<li class="next"><a href="javascript:void(0);">下一页<\/a><\/li>',
+                    last: '<li class="last"><a href="javascript:void(0);">末页<\/a><\/li>',
+                    page: '<li class="page"><a href="javascript:void(0);">{{page}}<\/a><\/li>',
+                    onPageChange: function (num, type) {
+                        $.post("/Tender/Tapplys/GetBillList", { "pageIndex": num, "pageSize": pagesize, "seachValue": search }, function (data) {
+                            var jsonData = JSON.parse(data);
+                            var billlist = document.getElementById('billlist');
+                            var tableBody = billlist.getElementsByTagName('tbody')[0];
+                            tableBody.innerHTML = "";
+                            var xuhao = (num - 1) * pagesize;
+                            for (var i = 0; i < jsonData.row.length; i++) {
+                                xuhao += 1;
+                                var tr = tableBody.insertRow(-1);
+                                tr.insertCell(-1).innerHTML = '<input type="checkbox" name="billcheck" value="' + jsonData.row[i].Id + '">';
+                                tr.insertCell(-1).innerHTML = xuhao;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].BillName;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].BillSpec;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].BillMata;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].Unit;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].BillNum;
+                                tr.insertCell(-1).innerHTML = jsonData.row[i].Price;
+                            }
+                        })
+                    }
+                });
+            });
+        }
+
+        function GetCompanyList(ids) {
+            var idArr = ids.split(',');
+            var pagesize = 5;
+            $('#companypage').jqPaginator({
+                pageSize: pagesize,
+                totalCounts: idArr.length - 1,
+                visiblePages: 5,
+                currentPage: 1,
+                first: '<li class="first"><a href="javascript:void(0);">首页<\/a><\/li>',
+                prev: '<li class="prev"><a href="javascript:void(0);">上一页<\/a><\/li>',
+                next: '<li class="next"><a href="javascript:void(0);">下一页<\/a><\/li>',
+                last: '<li class="last"><a href="javascript:void(0);">末页<\/a><\/li>',
+                page: '<li class="page"><a href="javascript:void(0);">{{page}}<\/a><\/li>',
+                onPageChange: function (num, type) {
+                    $.post("/Tender/Tapplys/GetCompanyList", { "pageIndex": num, "pageSize": pagesize, "seachValue": ids }, function (data) {
+                        var jsonData = JSON.parse(data);
+                        var companylist = document.getElementById('companylist');
+                        var tableBody = companylist.getElementsByTagName('tbody')[0];
+                        tableBody.innerHTML = "";
+                        var xuhao = (num - 1) * pagesize;
+                        for (var i = 0; i < jsonData.row.length; i++) {
+                            xuhao += 1;
+                            var tr = tableBody.insertRow(-1);
+                            tr.insertCell(-1).innerHTML = xuhao;
+                            tr.insertCell(-1).innerHTML = jsonData.row[i].Name;
+                            tr.insertCell(-1).innerHTML = jsonData.row[i].UserName;
+                            tr.insertCell(-1).innerHTML = jsonData.row[i].SupplierState == 1 ? "预备供应商" : "正式供应商";
+                            tr.insertCell(-1).innerHTML = jsonData.row[i].IsBid == true ? "是" : "否";
+                            tr.insertCell(-1).innerHTML = jsonData.row[i].SupplierType == 1 ? "国营企业" : (jsonData.row[i].SupplierType == 2 ? "民营企业" : "其他企业");
+                            tr.insertCell(-1).innerHTML = jsonData.row[i].PhoneNum;
+                        }
+                    })
+                }
+            });
+        }
+
+        function ajax(pageIndex) {
+            var search = $('#ApplyId').val();
+            $.post("/Tender/Tapplys/GetBillList", { "pageIndex": pageIndex, "pageSize": 5, "seachValue": search }, function (data) {
+                var jsonData = JSON.parse(data);
+                initPage(jsonData.totalCount, jsonData.row, 5, pageIndex);
+            });
+        }
+
+        function initPage(totalPage, list, pageSize, index) {
+            $('#pagination').jqPaginator({
+                pageSize: pageSize,
+                totalCounts: totalPage,
+                visiblePages: 5,
+                currentPage: index,
+                first: '<li class="first"><a href="javascript:void(0);">首页<\/a><\/li>',
+                prev: '<li class="prev"><a href="javascript:void(0);">上一页<\/a><\/li>',
+                next: '<li class="next"><a href="javascript:void(0);">下一页<\/a><\/li>',
+                last: '<li class="last"><a href="javascript:void(0);">末页<\/a><\/li>',
+                page: '<li class="page"><a href="javascript:void(0);">{{page}}<\/a><\/li>',
+                onPageChange: function (num, type) {
+                    if (type !== 'init') {
+                        ajax(num);
+                    };
+                    var billlist = document.getElementById('billlist');
+                    var tableBody = billlist.getElementsByTagName('tbody')[0];
+                    tableBody.innerHTML = "";
+                    var xuhao = (num - 1) * pageSize;
+                    for (var i = 0; i < list.length; i++) {
+                        xuhao += 1;
+                        var tr = tableBody.insertRow(-1);
+                        tr.insertCell(-1).innerHTML = '<input type="checkbox" name="billcheck" value="' + list[i].Id + '">';
+                        tr.insertCell(-1).innerHTML = xuhao;
+                        tr.insertCell(-1).innerHTML = list[i].BillName;
+                        tr.insertCell(-1).innerHTML = list[i].BillSpec;
+                        tr.insertCell(-1).innerHTML = list[i].BillMata;
+                        tr.insertCell(-1).innerHTML = list[i].Unit;
+                        tr.insertCell(-1).innerHTML = list[i].BillNum;
+                        tr.insertCell(-1).innerHTML = list[i].Price;
+                    }
+                }
+            });
+        }
+    </script>
 }

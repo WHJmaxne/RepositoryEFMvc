@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace EFCodeFirst.Model
 {
-    public class Role
+    public partial class Role
     {
         public Role()
         {
             this.UserRole = new HashSet<UserRole>();
             this.RolePer = new HashSet<RolePer>();
+            this.TApply = new HashSet<TApply>();
         }
         public int Id { get; set; }
         [DisplayName("部门"), ForeignKey("Department")]
@@ -33,6 +34,6 @@ namespace EFCodeFirst.Model
         public virtual ICollection<UserRole> UserRole { get; set; }
         public virtual Department Department { get; set; }
         public virtual ICollection<RolePer> RolePer { get; set; }
-
+        public virtual ICollection<TApply> TApply { get; set; }
     }
 }

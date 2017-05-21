@@ -11,10 +11,10 @@ namespace EFCodeFirst.Model.ExtensionModel
         /// <summary>
         /// 预备供应商
         /// </summary>
-        Ready,
+        Ready = 1,
         /// <summary>
         /// 正式供应商
         /// </summary>
-        Regular
+        Regular = 2
     }
 }

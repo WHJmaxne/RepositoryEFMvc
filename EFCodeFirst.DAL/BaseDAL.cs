@@ -110,7 +110,7 @@ namespace EFCodeFirst.DAL
             else
                 dbOrder = dbQuery.OrderBy(order);
             var temp = dbOrder.Where(where).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            totalCount = temp.Count();
+            totalCount = dbOrder.Where(where).Count();
             pageCount = Convert.ToInt32(Math.Ceiling(totalCount * 1.0 / pageSize));
             return temp;
         }

@@ -1,0 +1,90 @@
+﻿@model EFCodeFirst.Model.TapplyBill
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<fieldset style="font-size:15px;">
+
+    @*<div class="editor-label">
+            @Html.LabelFor(model => model.TApplyNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TApplyNumber)
+            @Html.ValidationMessageFor(model => model.TApplyNumber)
+        </div>*@
+    @Html.HiddenFor(model => model.TApplyNumber, new { Value = ViewBag.applyNum })
+    @Html.HiddenFor(model => model.BillTypeId, new { Value = ViewBag.billType })
+    @*<div class="editor-label">
+            @Html.LabelFor(model => model.BillTypeId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BillTypeId)
+            @Html.ValidationMessageFor(model => model.BillTypeId)
+        </div>*@
+
+    <div class="row">
+        <div class="span1">
+            @Html.DisplayNameFor(model => model.BillName)
+        </div>
+        @Html.EditorFor(model => model.BillName)
+        @Html.ValidationMessageFor(model => model.BillName)
+    </div>
+    <br />
+    <div class="row">
+        <div class="span1">
+            @Html.DisplayNameFor(model => model.BillSpec)
+        </div>
+        @Html.EditorFor(model => model.BillSpec)
+        @Html.ValidationMessageFor(model => model.BillSpec)
+    </div>
+    <br />
+    <div class="row">
+        <div class="span1">
+            @Html.DisplayNameFor(model => model.BillMata)
+        </div>
+        @Html.EditorFor(model => model.BillMata)
+        @Html.ValidationMessageFor(model => model.BillMata)
+    </div>
+    <br />
+    <div class="row">
+        <div class="span1">
+            @Html.DisplayNameFor(model => model.Unit)
+        </div>
+        @Html.EditorFor(model => model.Unit)
+        @Html.ValidationMessageFor(model => model.Unit)
+    </div>
+    <br />
+    <div class="row">
+        <div class="span1">
+            @Html.DisplayNameFor(model => model.BillNum)
+        </div>
+        @Html.EditorFor(model => model.BillNum)
+        @Html.ValidationMessageFor(model => model.BillNum)
+    </div>
+    <br />
+    <div class="row">
+        <div class="span1">
+            @Html.DisplayNameFor(model => model.Price)
+        </div>
+        @Html.EditorFor(model => model.Price)
+        @Html.ValidationMessageFor(model => model.Price)
+    </div>
+    <br />
+    <div class="row">
+        <div class="span1">
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </div>
+        <input type="date" name="DeliveryDate" id="DeliveryDate" value="@DateTime.Now" />
+        @Html.ValidationMessageFor(model => model.DeliveryDate)
+    </div>
+    <br />
+    <div class="row">
+        <div class="span1">
+            @Html.DisplayNameFor(model => model.BillRemark)
+        </div>
+        @Html.TextAreaFor(model => model.BillRemark)
+        @Html.ValidationMessageFor(model => model.BillRemark)
+    </div>
+
+</fieldset>
