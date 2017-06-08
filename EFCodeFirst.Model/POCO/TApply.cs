@@ -10,64 +10,38 @@ namespace EFCodeFirst.Model
     {
         public TApply ToPOCO()
         {
-
+            TApply tap = new TApply();
+            tap.ApplyState = this.ApplyState;
+            tap.ApplySum = this.ApplySum;
+            tap.ApplyId = this.ApplyId;
+            tap.ApplyName = this.ApplyName;
+            tap.ApplyRemark = this.ApplyRemark;
+            tap.ApplyUser = this.ApplyUser;
+            tap.AssignTime = this.AssignTime;
+            tap.BillTypeId = this.BillTypeId;
+            tap.BillType = this.BillType.ToPOCO();
+            tap.CreateTime = this.CreateTime;
+            tap.ExaminationUser = this.ExaminationUser;
+            tap.Id = this.Id;
+            tap.IsDelete = this.IsDelete;
+            tap.NoticeTime = this.NoticeTime;
+            tap.PlanType = this.PlanType;
+            tap.ProjectManager = this.ProjectManager;
+            tap.ProjectType = this.ProjectType;
+            tap.ReviewTime = this.ReviewTime;
+            tap.UserInfo1 = this.UserInfo1.ToPOCO();
+            tap.Role = this.Role.ToPOCO();
             if (this.UserInfo == null)
             {
                 EFCodeFirst.Model.UserInfo user = new UserInfo();
                 user.RealName = "未分配";
-                return new TApply()
-                {
-                    ApplyState = this.ApplyState,
-                    ApplySum = this.ApplySum,
-                    ApplyId = this.ApplyId,
-                    ApplyName = this.ApplyName,
-                    ApplyRemark = this.ApplyRemark,
-                    ApplyUser = this.ApplyUser,
-                    AssignTime = this.AssignTime,
-                    BillTypeId = this.BillTypeId,
-                    BillType = this.BillType.ToPOCO(),
-                    CreateTime = this.CreateTime,
-                    ExaminationUser = this.ExaminationUser,
-                    Id = this.Id,
-                    IsDelete = this.IsDelete,
-                    UserInfo = user,
-                    NoticeTime = this.NoticeTime,
-                    PlanType = this.PlanType,
-                    ProjectManager = this.ProjectManager,
-                    ProjectType = this.ProjectType,
-                    ReviewTime = this.ReviewTime,
-                    UserInfo1 = this.UserInfo1.ToPOCO(),
-                    Role = this.Role.ToPOCO()
-                };
+                tap.UserInfo = user;
             }
             else
             {
-                return new TApply()
-                {
-                    ApplyState = this.ApplyState,
-                    ApplySum = this.ApplySum,
-                    ApplyId = this.ApplyId,
-                    ApplyName = this.ApplyName,
-                    ApplyRemark = this.ApplyRemark,
-                    ApplyUser = this.ApplyUser,
-                    AssignTime = this.AssignTime,
-                    BillTypeId = this.BillTypeId,
-                    BillType = this.BillType.ToPOCO(),
-                    CreateTime = this.CreateTime,
-                    ExaminationUser = this.ExaminationUser,
-                    Id = this.Id,
-                    IsDelete = this.IsDelete,
-                    UserInfo = this.UserInfo.ToPOCO(),
-                    NoticeTime = this.NoticeTime,
-                    PlanType = this.PlanType,
-                    ProjectManager = this.ProjectManager,
-                    ProjectType = this.ProjectType,
-                    ReviewTime = this.ReviewTime,
-                    UserInfo1 = this.UserInfo1.ToPOCO(),
-                    Role = this.Role.ToPOCO()
-                };
+                tap.UserInfo = this.UserInfo.ToPOCO();
             }
-
+            return tap;
         }
     }
 }

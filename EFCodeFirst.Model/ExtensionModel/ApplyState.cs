@@ -29,7 +29,7 @@ namespace EFCodeFirst.Model.ExtensionModel
         /// </summary>
         Completed = 5,
         /// <summary>
-        /// 以驳回
+        /// 已驳回
         /// </summary>
         Rejected = 6
     }

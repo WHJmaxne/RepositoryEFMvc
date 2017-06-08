@@ -1,5 +1,6 @@
 ﻿using EFCodeFirst.Common;
 using EFCodeFirst.Model;
+using EFCodeFirst.Model.FormatModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,10 @@ namespace EFCodeFirst.UI.Controllers
             //operContext.BllSession.SaveChanges();
             return View();
         }
-
+        public ActionResult Index()
+        {
+            return View();
+        }
         [HttpPost]
         public ActionResult Login(Model.ViewModel.LoginUser user)
         {
@@ -35,12 +39,12 @@ namespace EFCodeFirst.UI.Controllers
             }
             if (operContext.valiSession == null || !user.ValidataNum.IsSameStr(operContext.valiSession))
             {
-                operContext.valiSession = null;
-                return Content(operContext.JsonMsgNoOK("验证码不正确"));
+                return Content(operContext.JsonMsg(AjaxMsgStatu.ErrValidata, "验证码不正确!"));
             }
             var usr = operContext.BllSession.UserInfoBLL.Login(user.UserName, user.UserPwd.MD5());
             if (usr == null)
             {
+                operContext.valiSession = null;
                 return Content(operContext.JsonMsgNoOK("用户名或密码错误！"));
             }
             //将当前登陆用户存入session
@@ -58,9 +62,10 @@ namespace EFCodeFirst.UI.Controllers
         }
         public ActionResult ValidataImage()
         {
-            var s1 = new ValidateCode_Style4();
-            string code = "6666";
-            byte[] bytes = s1.CreateImage(out code);
+            var validataCode = new ValidateCode_Style9();
+            string code;
+            validataCode.ValidataCodeLength = 5;
+            byte[] bytes = validataCode.CreateImage(out code);
             operContext.valiSession = code;
             return File(bytes, @"image/jpeg");
         }

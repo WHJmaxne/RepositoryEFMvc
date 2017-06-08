@@ -27,6 +27,10 @@ namespace EFCodeFirst.Model.FormatModel
         /// <summary>
         /// 没有权限
         /// </summary>
-        NoPer
+        NoPer,
+        /// <summary>
+        /// 验证码不正确
+        /// </summary>
+        ErrValidata
     }
 }

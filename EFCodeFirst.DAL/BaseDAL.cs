@@ -108,7 +108,7 @@ namespace EFCodeFirst.DAL
             if (isAsc)
                 dbOrder = dbQuery.OrderBy(order);
             else
-                dbOrder = dbQuery.OrderBy(order);
+                dbOrder = dbQuery.OrderByDescending(order);
             var temp = dbOrder.Where(where).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             totalCount = dbOrder.Where(where).Count();
             pageCount = Convert.ToInt32(Math.Ceiling(totalCount * 1.0 / pageSize));
@@ -125,7 +125,7 @@ namespace EFCodeFirst.DAL
             if (isAsc)
                 dbOrder = dbQuery.OrderBy(order);
             else
-                dbOrder = dbQuery.OrderBy(order);
+                dbOrder = dbQuery.OrderByDescending(order);
             pageData.rows = dbOrder.Where(where).Skip((pageData.pageIndex - 1) * pageData.pageSize).Take(pageData.pageSize);
             pageData.total = dbOrder.Where(where).Count();
 

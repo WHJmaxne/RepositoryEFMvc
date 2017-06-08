@@ -22,39 +22,40 @@
             $('#seachBtn').click(function () {
                 ajax(1);
             });
-            $('#btnPrint').click(PrintInfo);
-        });
+            // $('#btnPrint').click(PrintInfo);
+
+            $("#btnSave").click(function () {
+                var actionUrl = $("#modal-content").attr("action");
+                var $form = $("#modal-content");
+                $.ajax({
+                    type: "POST",
+                    url: actionUrl,
+                    data: $form.serialize(),
+                    success: function (result) {
+                        var resarr = result.split(':');
+                        if (resarr[0] == 'yes') {
+                            toastr.success(resarr[1]);
+                            $('#modal-form').modal('hide');
+                            //GetBillList();
+                            ajax(pageIndex);
+                        }
+                        else {
+                            toastr.error(resarr[1]);
+                        }
+                    },
+                    error: function () {
+                        toastr.error('网络错误，请重新提交！');
+                    }
+                });
+            });
+        })
+        //ajax分页
+
         var pageIndex = 1;
-        function PrintInfo() {
-            //alert(1);
-            //if (oper < 10) {
-
-            bdhtml = window.document.body.innerHTML;//获取当前页的html代码
-            sprnstr = "<!--startprint1-->";//设置打印开始区域
-            eprnstr = "<!--endprint1-->";//设置打印结束区域
-            prnhtml = bdhtml.substring(bdhtml.indexOf(sprnstr) + 18); //从开始代码向后取html
-
-            prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));//从结束代码向前取html
-            var newwindow = window.open();
-            var htmlall = '<!DOCTYPE html><html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body>' + prnhtml + '<div class="reward-body"></div></html>';
-            newwindow.document.body.innerHTML = prnhtml;
-            newwindow.print();
-            newwindow.close();
-            //window.document.body.innerHTML = prnhtml;
-            //window.print();
-            //ajax(pageIndex);
-            //location.href = "/Tender/Tapplys/Index/53";
-            //$('#modal-form').modal('hide');
-            //window.document.body.outerHTML = bdhtml;
-
-            //} else {
-            //    window.print();
-            //}
-        }
         function ajax(page) {
             var search = $('#seachName').val();
             var pagesize = 10;
-            $.post("/Tender/Tapplys/Index", { "pageIndex": page, "pageSize": pagesize, "seachValue": search }, function (data) {
+            $.post("/Tender/Accept/Index", { "pageIndex": page, "pageSize": pagesize, "seachValue": search }, function (data) {
                 var jsonData = JSON.parse(data);
                 initPage(jsonData.totalCount, jsonData.row, pagesize, page);
             });
@@ -94,50 +95,33 @@
                         tr.insertCell(-1).innerHTML = GetProName(list[i].UserInfo.RealName);
                         tr.insertCell(-1).innerHTML = list[i].Role.RoleName;
                         tr.insertCell(-1).innerHTML = ((list[i].CreateTime).replace(/T/, ' ')).substring(0, 19);
-                        tr.insertCell(-1).innerHTML = Operation(list[i]);
+                        tr.insertCell(-1).innerHTML = '<a href="javascript:Review(' + list[i].Id + ')" class="btn btn-info"><span class="icon-cog"></span>受理</a>';
                     }
                     // })
                 }
             });
         }
-        function Operation(obj) {
-            var result = "";
-            if (obj.ApplyState == 5) {
-                result = '<a href="javascript:DetailTapply(' + obj.Id + ')" class="btn btn-info"><span class="icon-print"></span></a>';
-            } else {
-                result = '<a href="javascript:DeleteTapply(' + obj.Id + ')" class="btn btn-danger"><span class="icon-remove"></span></a><a href="javascript:DetailTapply(' + obj.Id + ')" class="btn btn-info"><span class="icon-print"></span></a>';
-            }
-            return result;
-        }
-        function DeleteTapply(id) {
-            layer.confirm('您确定要删除吗？', { icon: 2, title: '警告' }, function (index) {
-                layer.close(index);
-                debugger;
-                //alert(id);
-                $.ajax({
-                    type: "post",
-                    url: "/Tender/Tapplys/DeleteTapply",
-                    data: { "Id": id },
-                    success: function (result) {
-                        var resarr = result.split(':');
-                        if (resarr[0] == 'yes') {
-                            toastr.success(resarr[1]);
-                            ajax(pageIndex);
-                        } else {
-                            toastr.error(resarr[1]);
-                        }
-                    },
-                    error: function () {
-                        toastr.error('网络错误，请重新提交！');
-                    }
-                });
-            });
-        }
-        function DetailTapply(id) {
-            localStorage.setItem("detailid", id);
-            var actionUrl = "@Url.Action("Detail")";
+
+        function Review(id) {
+            var actionUrl = "@Url.Action("Accept")";
             var param = { 'Id': id };
-            ShowModal(actionUrl, param, "招标委托详情");
+            //ShowModal(actionUrl, param, "招标委托审核");
+            $.ajax({
+                type: 'post',
+                url: actionUrl,
+                data: param,
+                success: function (result) {
+                    var resarr = result.split(':');
+                    if (resarr[0] == 'yes') {
+                        toastr.success(resarr[1]);
+                        //GetBillList();
+                        ajax(pageIndex);
+                    }
+                    else {
+                        toastr.error(resarr[1]);
+                    }
+                }
+            });
         }
         function GetAppState(id) {
             var result;
@@ -157,7 +141,7 @@
                 result = '<span class="label label-success">已完成</span>';
             }
             else if (id == 6) {
-                result = '<span class="label label-warning">已驳回</span>';
+                result = '<span class="label label-warning">以驳回</span>';
             } else {
                 result = '<span class="label label-important">状态异常</span>';
             }
@@ -166,7 +150,7 @@
         function GetProName(name) {
             var result = name;
             if (name == "未分配") {
-                result = '<span class="label label-important">未分派</span>';
+                result = '<span class="label label-important">未分配</span>';
             }
             return result;
         }
@@ -183,7 +167,7 @@
 }
 
 @{
-            var mol = ViewBag.bread as ViewMenu;
+    var mol = ViewBag.bread as ViewMenu;
 }
 <div id="content-header">
     <div id="breadcrumb"> <a href="@mol.url/@mol.Id" title="" class="tip-bottom"><i class="icon-home"></i> @mol.text</a></div>
@@ -220,4 +204,4 @@
     @*@Ajax.ActionLink("Add Person", "Add", new { area = "Admin", controller = "User" },new AjaxOptions() { HttpMethod = "get", UpdateTargetId = "modalContent", InsertionMode = InsertionMode.Replace, OnComplete = "onComplete" },new { id = "btnPerson", @class = "btn btn-lg btn-info" })*@
 </div>
 
-@Html.Partial("_IndexModalForm")
+@Html.Partial("_ModalForm")

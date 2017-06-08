@@ -26,7 +26,7 @@
                     @Html.DisplayNameFor(model => model.ApplyId)
                 </div>
                 @*+ DateTime.Now.ToString("yyyyMMddHHmmssffff")*@
-                @Html.TextBoxFor(model => model.ApplyId, new { Value = "ZB201705171002583194", @readonly = "true" })
+                @Html.TextBoxFor(model => model.ApplyId, new { Value = "ZB" + DateTime.Now.ToString("yyyyMMddHHmmssffff"), @readonly = "true" })
                 @Html.ValidationMessageFor(model => model.ApplyId)
             </div>
             <div class="span6">

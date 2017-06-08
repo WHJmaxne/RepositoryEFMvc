@@ -1,109 +1,99 @@
 ﻿@model EFCodeFirst.Model.TApply
+@using EFCodeFirst.Model.ExtensionModel;
 
 <script src="~/Scripts/jquery-1.8.2.min.js"></script>
-
-<fieldset>
-    <legend>TApply</legend>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ApplyId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ApplyId)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ApplyName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ApplyName)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.BillTypeId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.BillTypeId)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ApplyUser)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ApplyUser)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ApplySum)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ApplySum)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ApplyRemark)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ApplyRemark)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ExaminationUser)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ExaminationUser)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProjectManager)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProjectManager)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.IsDelete)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.IsDelete)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CreateTime)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CreateTime)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ReviewTime)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ReviewTime)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.NoticeTime)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.NoticeTime)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.AssignTime)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AssignTime)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CompanyIds)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CompanyIds)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!--startprint1-->
+<p style="font-size:20px;text-align:center">招标委托详情</p>
+<br />
+<table class="table table-responsive table-hover">
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.ApplyId)</td>
+        <td>@Html.DisplayFor(model => model.ApplyId)</td>
+        <td>@Html.DisplayNameFor(model => model.ApplyName)</td>
+        <td>@Html.DisplayFor(model => model.ApplyName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.ProjectType)</td>
+        <td>
+            @if (Model.ProjectType == ProjectType.Open)
+            {
+                <text>公开招标</text>
+            }
+            else
+            {
+                <text>邀请招标</text>
+            }
+        </td>
+        <td>@Html.DisplayNameFor(model => model.PlanType)</td>
+        <td>
+            @if (Model.PlanType == PlanType.Month)
+            {
+                <text>月度计划</text>
+            }
+            else
+            {
+                <text>年度计划</text>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.ApplyState)</td>
+        <td>
+            @if (Model.ApplyState == ApplyState.PendingAudit)
+            {
+                <span class="label label-info">待审核</span>
+            }
+            else if (Model.ApplyState == ApplyState.PendingAssignment)
+            {
+                <span class="label label-info">待分派</span>
+            }
+            else if (Model.ApplyState == ApplyState.PendingAcceptance)
+            {
+                <span class="label label-info">待受理</span>
+            }
+            else if (Model.ApplyState == ApplyState.PendingRelease)
+            {
+                <span class="label label-info">待发布</span>
+            }
+            else if (Model.ApplyState == ApplyState.Completed)
+            {
+                <span class="label label-success">已完成</span>
+            }
+            else if (Model.ApplyState == ApplyState.Rejected)
+            {
+                <span class="label label-warning">以驳回</span>
+            }
+            else
+            {
+                <span class="label label-important">状态异常</span>
+            }
+        </td>
+        <td>@Html.DisplayNameFor(model => model.BillTypeId)</td>
+        <td>@Html.DisplayFor(model => model.BillType.BillTypeName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.ApplyUser)</td>
+        <td>@Html.DisplayFor(model => model.UserInfo1.RealName)</td>
+        <td>@Html.DisplayNameFor(model => model.ProjectManager)</td>
+        <td>@Html.DisplayFor(model => model.UserInfo.RealName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.ExaminationUser)</td>
+        <td>@Html.DisplayFor(model => model.Role.RoleName)</td>
+        <td>@Html.DisplayNameFor(model => model.ApplySum)</td>
+        <td>@Html.DisplayFor(model => model.ApplySum)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.CreateTime)</td>
+        <td>@Html.DisplayFor(model => model.CreateTime)</td>
+        <td>@Html.DisplayNameFor(model => model.ReviewTime)</td>
+        <td>@Html.DisplayFor(model => model.ReviewTime)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.NoticeTime)</td>
+        <td>@Html.DisplayFor(model => model.NoticeTime)</td>
+        <td>@Html.DisplayNameFor(model => model.AssignTime)</td>
+        <td>@Html.DisplayFor(model => model.AssignTime)</td>
+    </tr>
+</table>
+<!--endprint1-->

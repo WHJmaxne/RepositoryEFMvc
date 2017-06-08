@@ -42,15 +42,15 @@ namespace EFCodeFirst.UI.Areas.Tender.Controllers
             IList<TApply> list = new List<TApply>();
             if (!seachValue.IsNullOrEmpty())
             {
-                list = operContext.BllSession.TApplyBLL.LoadPageEntities(pageIndex, pageSize, out totalCount, out totalPage, u => u.IsDelete == false && (u.ApplyName.Contains(seachValue) || u.ApplyId.Contains(seachValue)), u => u.Id, true, "UserInfo", "BillType").ToList();
+                list = operContext.BllSession.TApplyBLL.LoadPageEntities(pageIndex, pageSize, out totalCount, out totalPage, u => u.IsDelete == false && u.ApplyUser == operContext.UserSession.Id && (u.ApplyName.Contains(seachValue) || u.ApplyId.Contains(seachValue)), u => u.Id, false, "UserInfo", "BillType").ToList();
             }
             else
             {
-                list = operContext.BllSession.TApplyBLL.LoadPageEntities(pageIndex, pageSize, out totalCount, out totalPage, u => u.IsDelete == false, u => u.Id, true, "UserInfo", "BillType").ToList();
+                list = operContext.BllSession.TApplyBLL.LoadPageEntities(pageIndex, pageSize, out totalCount, out totalPage, u => u.IsDelete == false && u.ApplyUser == operContext.UserSession.Id, u => u.Id, false, "UserInfo", "BillType").ToList();
             }
 
             var temp = list.Select(u => u.ToPOCO()).ToList();
-            return Content(SerializerHelper.SerializerToString(new { row = temp }));
+            return Content(SerializerHelper.SerializerToString(new { row = temp, totalCount = totalCount }));
         }
 
         public ActionResult Total()
@@ -59,11 +59,11 @@ namespace EFCodeFirst.UI.Areas.Tender.Controllers
             int list = 0;
             if (!seachValue.IsNullOrEmpty())
             {
-                list = operContext.BllSession.TApplyBLL.LoadEntities(u => u.IsDelete == false && (u.ApplyName.Contains(seachValue) || u.ApplyId.Contains(seachValue))).Count();
+                list = operContext.BllSession.TApplyBLL.LoadEntities(u => u.IsDelete == false && u.ApplyUser == operContext.UserSession.Id && (u.ApplyName.Contains(seachValue) || u.ApplyId.Contains(seachValue))).Count();
             }
             else
             {
-                list = operContext.BllSession.TApplyBLL.LoadEntities(u => u.IsDelete == false).Count();
+                list = operContext.BllSession.TApplyBLL.LoadEntities(u => u.IsDelete == false && u.ApplyUser == operContext.UserSession.Id).Count();
             }
 
             return Content(SerializerHelper.SerializerToString(new { total = list }));
