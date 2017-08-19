@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace EFCodeFirst.BLL
 {
-   public abstract class BaseBLL<T> where T :class,new()
+    public abstract class BaseBLL<T> where T : class, new()
     {
-       public IDBSession DbSession
-       {
-           get
-           {
-               return DALFactory.DbSessionFactory.CreatDbSession();
-           }
-       }
-       public IBaseDAL<T> CurrentDAL { get; set; }
-       public abstract void SetCurrent();
-       public BaseBLL()
-       {
-           SetCurrent();
-       }
+        public IDBSession DbSession
+        {
+            get
+            {
+                return DALFactory.DbSessionFactory.CreatDbSession();
+            }
+        }
+        public IBaseDAL<T> CurrentDAL { get; set; }
+        public abstract void SetCurrent();
+        public BaseBLL()
+        {
+            SetCurrent();
+        }
         public bool AddEntity(T entity)
         {
             return CurrentDAL.AddEntity(entity);
@@ -44,27 +44,27 @@ namespace EFCodeFirst.BLL
         {
             return CurrentDAL.EditList(where, editNames, editValues);
         }
-        public IEnumerable<T> LoadEntities(Expression<Func<T, bool>> where)
+        public IQueryable<T> LoadEntities(Expression<Func<T, bool>> where)
         {
             return CurrentDAL.LoadEntities(where);
         }
-        public IEnumerable<T> LoadOrderEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc)
+        public IQueryable<T> LoadOrderEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc)
         {
             return CurrentDAL.LoadOrderEntities<s>(where, order, isAsc);
         }
-        public IEnumerable<T> LoadInculdeEntities(Expression<Func<T, bool>> where, params string[] includeNames)
+        public IQueryable<T> LoadInculdeEntities(Expression<Func<T, bool>> where, params string[] includeNames)
         {
             return CurrentDAL.LoadInculdeEntities(where, includeNames);
         }
-        public IEnumerable<T> LoadOrderIncludeEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
+        public IQueryable<T> LoadOrderIncludeEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
         {
             return CurrentDAL.LoadOrderIncludeEntities(where, order, isAsc, includeNames);
         }
-        public IEnumerable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, out int pageCount, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
+        public IQueryable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, out int pageCount, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
         {
-            return CurrentDAL.LoadPageEntities<s>(pageIndex, pageSize,out totalCount,out pageCount, where, order, isAsc, includeNames);
+            return CurrentDAL.LoadPageEntities<s>(pageIndex, pageSize, out totalCount, out pageCount, where, order, isAsc, includeNames);
         }
-        public IEnumerable<T> LoadPageModelEntities<s>(Model.FormatModel.PageModel pageData, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
+        public IQueryable<T> LoadPageModelEntities<s>(Model.FormatModel.PageModel pageData, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
         {
             return CurrentDAL.LoadPageModelEntities<s>(pageData, where, order, isAsc, includeNames);
         }
@@ -72,7 +72,7 @@ namespace EFCodeFirst.BLL
         {
             return CurrentDAL.ExcuteSql(strSql, param);
         }
-        public IEnumerable<T> ExcuteQuery<S>(string strSql, params SqlParameter[] param)
+        public IQueryable<T> ExcuteQuery<S>(string strSql, params SqlParameter[] param)
         {
             return CurrentDAL.ExcuteQuery<S>(strSql, param);
         }

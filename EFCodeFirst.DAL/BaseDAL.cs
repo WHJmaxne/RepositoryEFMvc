@@ -61,12 +61,12 @@ namespace EFCodeFirst.DAL
             }
             return true;
         }
-        public IEnumerable<T> LoadEntities(Expression<Func<T, bool>> where)
+        public IQueryable<T> LoadEntities(Expression<Func<T, bool>> where)
         {
             var entities = db.Set<T>().Where(where);
             return entities;
         }
-        public IEnumerable<T> LoadOrderEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc)
+        public IQueryable<T> LoadOrderEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc)
         {
             var temp = db.Set<T>().Where(where);
             if (isAsc)
@@ -75,7 +75,7 @@ namespace EFCodeFirst.DAL
                 temp = temp.OrderByDescending(order);
             return temp;
         }
-        public IEnumerable<T> LoadInculdeEntities(Expression<Func<T, bool>> where, params string[] includeNames)
+        public IQueryable<T> LoadInculdeEntities(Expression<Func<T, bool>> where, params string[] includeNames)
         {
             var dbQuery = db.Set<T>();
             foreach (string includeName in includeNames)
@@ -84,7 +84,7 @@ namespace EFCodeFirst.DAL
             }
             return dbQuery.Where(where);
         }
-        public IEnumerable<T> LoadOrderIncludeEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
+        public IQueryable<T> LoadOrderIncludeEntities<s>(Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
         {
             var dbQuery = db.Set<T>();
             foreach (string includeName in includeNames)
@@ -98,7 +98,7 @@ namespace EFCodeFirst.DAL
                 temp = temp.OrderByDescending(order);
             return temp;
         }
-        public IEnumerable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, out int pageCount, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
+        public IQueryable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, out int pageCount, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
         {
             var dbQuery = db.Set<T>();
             foreach (string includeName in includeNames)
@@ -115,7 +115,7 @@ namespace EFCodeFirst.DAL
             pageCount = Convert.ToInt32(Math.Ceiling(totalCount * 1.0 / pageSize));
             return temp;
         }
-        public IEnumerable<T> LoadPageModelEntities<s>(Model.FormatModel.PageModel pageData, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
+        public IQueryable<T> LoadPageModelEntities<s>(Model.FormatModel.PageModel pageData, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames)
         {
             var dbQuery = db.Set<T>();
             foreach (string includeName in includeNames)
@@ -130,17 +130,17 @@ namespace EFCodeFirst.DAL
             pageData.rows = dbOrder.Where(where).Skip((pageData.pageIndex - 1) * pageData.pageSize).Take(pageData.pageSize);
             pageData.total = dbOrder.Where(where).Count();
 
-            return pageData.rows as IEnumerable<T>;
+            return pageData.rows as IQueryable<T>;
         }
         public bool ExcuteSql(string strSql, params SqlParameter[] param)
         {
             db.Database.ExecuteSqlCommand(strSql, param);
             return true;
         }
-        public IEnumerable<T> ExcuteQuery<S>(string strSql, params SqlParameter[] param)
+        public IQueryable<T> ExcuteQuery<S>(string strSql, params SqlParameter[] param)
         {
             var temp = db.Database.SqlQuery<T>(strSql, param);
-            return temp;
+            return temp as IQueryable<T>;
         }
 
     }
