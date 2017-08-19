@@ -40,7 +40,7 @@ namespace EFCodeFirst.BLL
         public IList<Permission> UserPermission(int userId)
         {
             //根据用户id查询角色id
-            var roleIds = DbSession.UserRoleDAL.LoadEntities(r => r.UserInfoId == userId).Select(u => u.UserInfoId).ToList();
+            var roleIds = DbSession.UserRoleDAL.LoadEntities(r => r.UserInfoId == userId).Select(u => u.RoleId).ToList();
             //根据角色id查询权限id
             var perIds = DbSession.RolePerDAL.LoadEntities(p => roleIds.Contains(p.RoleId)).Select(p => p.PermissionId).ToList();
             //根据权限id查询权限集合

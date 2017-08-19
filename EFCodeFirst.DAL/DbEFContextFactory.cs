@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 
 namespace EFCodeFirst.DAL
 {
-   public class DbEFContextFactory
+    public class DbEFContextFactory
     {
-       public static DbContext CreatDbContext()
-       {
-           DbContext dbContext = (DbContext)CallContext.GetData("dbContext");
-           if (dbContext==null)
-           {
-               dbContext = new DbEFContext();
-               CallContext.SetData("dbContext", dbContext);
-           }
-           return dbContext;
-       }
+        public static DbContext CreatDbContext()
+        {
+
+            DbContext dbContext = (DbContext)CallContext.GetData("dbContext");
+            if (dbContext == null)
+            {
+                dbContext = new DbEFContext();
+                CallContext.SetData("dbContext", dbContext);
+            }
+            return dbContext;
+        }
     }
 }

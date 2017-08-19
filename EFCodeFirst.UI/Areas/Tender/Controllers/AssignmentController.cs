@@ -72,7 +72,7 @@ namespace EFCodeFirst.UI.Areas.Tender.Controllers
         [HttpGet]
         public ActionResult Agment()
         {
-            var selectList = operContext.BllSession.UserInfoBLL.LoadEntities(u => true).Select(u => new SelectListItem()
+            var selectList = operContext.BllSession.UserInfoBLL.LoadEntities(u => u.DepartmentId == 2).Select(u => new SelectListItem()
             {
                 Text = u.RealName,
                 Value = u.Id.ToString()

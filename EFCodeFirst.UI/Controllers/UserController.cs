@@ -58,7 +58,7 @@ namespace EFCodeFirst.UI.Controllers
             {
                 operContext.UserIdCookie = usr.Id;
             }
-            return Content(operContext.JsonMsgOK("登陆成功", "/Admin/Manage/Index"));
+            return Content(operContext.JsonMsgOK("登陆成功", "/Tender/tapplys/index/53"));
         }
         public ActionResult ValidataImage()
         {

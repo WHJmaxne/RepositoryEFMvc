@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "审核招标委托";
 }
 @using EFCodeFirst.Model.ViewModel;
 @model EFCodeFirst.Model.TApply
@@ -92,10 +92,11 @@
                         tr.insertCell(-1).innerHTML = list[i].PlanType == 1 ? "月度计划" : "年度计划";
                         tr.insertCell(-1).innerHTML = GetAppState(list[i].ApplyState);
                         tr.insertCell(-1).innerHTML = list[i].ProjectType == 1 ? "公开招标" : "邀请招标";
+                        tr.insertCell(-1).innerHTML = list[i].UserInfo1.RealName;
                         tr.insertCell(-1).innerHTML = GetProName(list[i].UserInfo.RealName);
                         tr.insertCell(-1).innerHTML = list[i].Role.RoleName;
                         tr.insertCell(-1).innerHTML = ((list[i].CreateTime).replace(/T/, ' ')).substring(0, 19);
-                        tr.insertCell(-1).innerHTML = '<a href="javascript:Review(' + list[i].Id + ')" class="btn btn-info"><span class="icon-cog"></span></a>';
+                        tr.insertCell(-1).innerHTML = '<a href="javascript:Review(' + list[i].Id + ')" class="btn btn-info"><span class="icon-cog">审核</span></a>';
                     }
                     // })
                 }
@@ -172,6 +173,7 @@
                     <td>计划类型</td>
                     <td>招标状态</td>
                     <td>招标类型</td>
+                    <td>经办人</td>
                     <td>项目经理</td>
                     <td>审核人员</td>
                     <td>添加时间</td>

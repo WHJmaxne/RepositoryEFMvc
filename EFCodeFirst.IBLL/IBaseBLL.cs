@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EFCodeFirst.IBLL
 {
-    public interface IBaseBLL<T> where T:class,new()
+    public interface IBaseBLL<T> where T : class, new()
     {
         bool AddEntity(T entity);
         bool DeleteEntity(T entity);
@@ -24,6 +24,6 @@ namespace EFCodeFirst.IBLL
         IEnumerable<T> LoadPageModelEntities<s>(Model.FormatModel.PageModel pageData, Expression<Func<T, bool>> where, Expression<Func<T, s>> order, bool isAsc, params string[] includeNames);
         bool ExcuteSql(string strSql, params SqlParameter[] param);
         IEnumerable<T> ExcuteQuery<S>(string strSql, params SqlParameter[] param);
-        
+
     }
 }

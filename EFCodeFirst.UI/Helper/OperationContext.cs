@@ -223,6 +223,7 @@ namespace EFCodeFirst.UI.Helper
         /// </summary>
         public void OutLogin()
         {
+            session.Clear();
             session.Abandon();
             HttpCookie cookie = Request.Cookies[userIdCookieKey];
             if (cookie != null && !cookie.Value.IsNullOrEmpty())

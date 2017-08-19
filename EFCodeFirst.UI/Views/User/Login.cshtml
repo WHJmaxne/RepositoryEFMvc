@@ -7,9 +7,10 @@
 <head>
     <meta charset="utf-8">
     <title>登录 - 信息化电子采购平台</title>
+    <link href="~/Content/BootStrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Login/style/register-login.css" rel="stylesheet" />
     <link href="~/Content/Toastr/toastr.css" rel="stylesheet" />
-    <link href="~/Content/BootStrap/css/bootstrap.min.css" rel="stylesheet" />
+
     <style>
         .loading {
             width: 160px;
@@ -52,10 +53,10 @@
                 <div class="login form">
                     <div class="group">
                         <div class="group-ipt username">
-                            <input type="text" name="UserName" id="UserName" class="ipt" placeholder="用户名" autocomplete="off" required>
+                            <input style="border-bottom:1px solid #d8d6d6" type="text" name="UserName" id="UserName" class="ipt" placeholder="用户名" autocomplete="off" required>
                         </div>
                         <div class="group-ipt password">
-                            <input type="password" name="UserPwd" id="UserPwd" class="ipt" placeholder="密码" required>
+                            <input style="border-bottom:1px solid #d8d6d6" type="password" name="UserPwd" id="UserPwd" class="ipt" placeholder="密码" required>
                         </div>
                         <div class="group-ipt verify">
                             <input type="text" name="ValidataNum" id="ValidataNum" class="ipt" placeholder="验证码" autocomplete="off" required>
@@ -90,15 +91,14 @@
 
     <script src="~/Scripts/jquery-1.11.1.min.js"></script>
     <script src="~/Content/BootStrap/js/bootstrap.min.js"></script>
-    @*<script src='~/Content/Login/js/jquery.min.js' type="text/javascript"></script>*@
-    @*<script src="/Scripts/jquery-1.8.2.min.js"></script>*@
+
     <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src='~/Content/Login/js/layer/layer.js' type="text/javascript"></script>
     <script src="~/Content/Toastr/toastr.min.js"></script>
     <script>
         toastr.options = { positionClass: "toast-top-center", showDuration: "150", hideDuration: "2000", showMethod: "fadeIn" };
         $(function () {
-            //GetChecked();
+            GetChecked();
         })
         $('.imgcode').hover(function () {
             layer.tips("看不清？点击更换", '.verify', {

@@ -21,6 +21,44 @@ namespace EFCodeFirst.UI.Areas.Tender.Controllers
             ViewBag.bread = GetBread(id);
             return View();
         }
+        public ActionResult AllTapplies(int id)
+        {
+            ViewBag.bread = GetBread(id);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AllTapplies()
+        {
+            string pageIndexStr = Request.Form["pageIndex"];
+            string pageSizeStr = Request.Form["pageSize"];
+            string seachValue = Request.Form["seachValue"];
+            int pageIndex = 1;
+            int pageSize = 1;
+            if (!int.TryParse(pageIndexStr, out pageIndex))
+            {
+                pageIndex = 1;
+            }
+            if (!int.TryParse(pageSizeStr, out pageSize))
+            {
+                pageSize = 10;
+            }
+            int totalCount = 1;
+            int totalPage = 1;
+            IList<TApply> list = new List<TApply>();
+            if (!seachValue.IsNullOrEmpty())
+            {
+                list = operContext.BllSession.TApplyBLL.LoadPageEntities(pageIndex, pageSize, out totalCount, out totalPage, u => u.IsDelete == false && (u.ApplyName.Contains(seachValue) || u.ApplyId.Contains(seachValue)), u => u.Id, false, "UserInfo", "BillType").ToList();
+            }
+            else
+            {
+                list = operContext.BllSession.TApplyBLL.LoadPageEntities(pageIndex, pageSize, out totalCount, out totalPage, u => u.IsDelete == false, u => u.Id, false, "UserInfo", "BillType").ToList();
+            }
+
+            var temp = list.Select(u => u.ToPOCO()).ToList();
+            return Content(SerializerHelper.SerializerToString(new { row = temp, totalCount = totalCount }));
+        }
+
         [HttpPost]
         public ActionResult Index()
         {
@@ -68,6 +106,7 @@ namespace EFCodeFirst.UI.Areas.Tender.Controllers
 
             return Content(SerializerHelper.SerializerToString(new { total = list }));
         }
+
         public ActionResult BillTotal()
         {
             string seachValue = Request.Form["seachValue"];
@@ -120,7 +159,7 @@ namespace EFCodeFirst.UI.Areas.Tender.Controllers
             }
             int totalCount = 1;
             int totalPage = 1;
-            var list = operContext.BllSession.SupplierBLL.LoadPageEntities(pageIndex, pageSize, out totalCount, out totalPage, u => idList.Contains(u.Id), u => u.Id, true).ToList();
+            var list = operContext.BllSession.SupplierBLL.LoadPageEntities(pageIndex, pageSize, out totalCount, out totalPage, u => idList.Contains(u.Id), u => u.Id, true);//.ToList();
             var temp = list.Select(u => u.ToPOCO()).ToList();
             return Content(SerializerHelper.SerializerToString(new { row = temp }));
         }
@@ -145,7 +184,7 @@ namespace EFCodeFirst.UI.Areas.Tender.Controllers
                 Value = b.Id.ToString(),
                 Text = b.BillTypeName
             });
-            ViewBag.ExtenUser = operContext.BllSession.RoleBLL.LoadEntities(r => true).Select(r => new SelectListItem()
+            ViewBag.ExtenUser = operContext.BllSession.RoleBLL.LoadEntities(r => r.DepartmentId == 2 && r.Id != 5).Select(r => new SelectListItem()
             {
                 Text = r.RoleName,
                 Value = r.Id.ToString(),

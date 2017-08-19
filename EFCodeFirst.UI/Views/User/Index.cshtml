@@ -10,10 +10,47 @@
     <link href="~/Content/BootStrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.11.1.min.js"></script>
     <script src="~/Content/BootStrap/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.loading.js"></script>
+    <script type="text/javascript">
+        function HtmlLoad() {
+            //$('#myModal').modal('show');
 
-    <style>
-        .loading {
-            width: 160px;
+            //setTimeout(function () {
+            //    $('#myModal').modal('hide');
+            //}, 3000);
+            //var modal = document.getElementById(id);
+            //modal.setAttribute('class', 'modal fade');
+            //modal.setAttribute('data-keyboard', 'false');
+            //modal.setAttribute('data-backdrop', 'static');
+            //modal.setAttribute('data-role', 'dialog');
+            //modal.setAttribute('aria-labelledby', 'myModalLabel');
+            //var showModal = '<div id="myShowModalloading" style="width: 160px;height: 56px;position: absolute;top: 20%;left: 45%;line-height: 56px;color: #fff;padding-left: 60px;font-size: 15px;background: #000 url(/Content/Login/images/loading.gif) no-repeat 10px 50%;opacity: 0.7;z-index: 9999;-moz-border-radius: 20px;-webkit-border-radius: 20px;border-radius: 20px;filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);">' + info + '</div>';
+            //modal.setAttribute('aria-hidden', 'true');
+            //modal.innerHTML = showModal;
+            //var model = "#" + id;
+            //$(model).attr('class', 'modal fade').attr('data-keyboard', 'false').attr('data-backdrop', 'static').attr('data-role', 'dialog').attr('aria-labelledby', 'myModalLabel').attr('aria-hidden', 'true');
+            //var div = '<div id="myShowModalloading" style="width: 160px;height: 56px;position: absolute;top: 20%;left: 45%;line-height: 56px;color: #fff;padding-left: 60px;font-size: 15px;background: #000 url(/Content/Login/images/loading.gif) no-repeat 10px 50%;opacity: 0.7;z-index: 9999;-moz-border-radius: 20px;-webkit-border-radius: 20px;border-radius: 20px;filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);">' + info + '</div>';
+            //$(model).html('');
+            //$(model).append(div);
+            //$(model).modal('show');
+            $('#newmodel').openloading();
+            setTimeout(function () {
+                $('#newmodel').closeloading();
+            }, 5000);
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <button id="load" onclick="HtmlLoad()">加载页面</button>
+        </div>
+        <div id="myModal" class="modal fade" data-keyboard="false"
+             data-backdrop="static" data-role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div id="myShowModalloading" style="width: 160px;
             height: 56px;
             position: absolute;
             top: 50%;
@@ -28,33 +65,9 @@
             -moz-border-radius: 20px;
             -webkit-border-radius: 20px;
             border-radius: 20px;
-            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
-        }
-    </style>
-
-    <script type="text/javascript">
-        function HtmlLoad(url) {
-            $('#myModal').modal('show');
-
-            //setTimeout(function () {
-            //    $('#myModal').modal('hide');
-            //}, 3000);
-
-        }
-    </script>
-
-</head>
-
-<body>
-    <div class="container">
-        <div class="row">
-            <button id="load" onclick="HtmlLoad()">加载页面</button>
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);">加载中...</div>
         </div>
-        <div id="myModal" class="modal fade" data-keyboard="false"
-             data-backdrop="static" data-role="dialog"
-             aria-labelledby="myModalLabel" aria-hidden="true">
-            <div id="loading" class="loading">加载中。。。</div>
-        </div>
+        <div id="newmodel"></div>
     </div>
 </body>
 </html>

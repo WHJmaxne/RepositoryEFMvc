@@ -504,11 +504,13 @@
     <Content Include="Areas\Tender\Views\Accept\Index.cshtml" />
     <Content Include="Areas\Tender\Views\Publish\Index.cshtml" />
     <Content Include="Content\Login\images\loading.gif" />
+    <Content Include="Areas\Tender\Views\Tapplys\AllTapplies.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\jquery.loading.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />

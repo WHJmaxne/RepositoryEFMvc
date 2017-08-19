@@ -36,6 +36,7 @@ namespace EFCodeFirst.DAL
         }
         public bool EditEntity(T entity, params string[] editNames)
         {
+            db.Set<T>().Attach(entity);
             DbEntityEntry entry = db.Entry<T>(entity);
             entry.State = EntityState.Unchanged;
             foreach (string editName in editNames)

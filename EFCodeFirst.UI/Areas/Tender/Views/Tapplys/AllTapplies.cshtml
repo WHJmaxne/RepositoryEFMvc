@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "我的招标委托";
+    ViewBag.Title = "全部招标委托";
 }
 @using EFCodeFirst.Model.ViewModel;
 @model EFCodeFirst.Model.TApply
@@ -54,7 +54,7 @@
         function ajax(page) {
             var search = $('#seachName').val();
             var pagesize = 10;
-            $.post("/Tender/Tapplys/Index", { "pageIndex": page, "pageSize": pagesize, "seachValue": search }, function (data) {
+            $.post("/Tender/Tapplys/AllTapplies", { "pageIndex": page, "pageSize": pagesize, "seachValue": search }, function (data) {
                 var jsonData = JSON.parse(data);
                 initPage(jsonData.totalCount, jsonData.row, pagesize, page);
             });
@@ -103,11 +103,11 @@
         }
         function Operation(obj) {
             var result = "";
-            if (obj.ApplyState == 5) {
-                result = '<a href="javascript:DetailTapply(' + obj.Id + ')" class="btn btn-info"><span class="icon-print"></span></a>';
-            } else {
-                result = '<a href="javascript:DeleteTapply(' + obj.Id + ')" class="btn btn-danger"><span class="icon-remove"></span></a><a href="javascript:DetailTapply(' + obj.Id + ')" class="btn btn-info"><span class="icon-print"></span></a>';
-            }
+            //if (obj.ApplyState == 5) {
+            result = '<a href="javascript:DetailTapply(' + obj.Id + ')" class="btn btn-info"><span class="icon-print"></span></a>';
+            //} else {
+            //result = '<a href="javascript:DeleteTapply(' + obj.Id + ')" class="btn btn-danger"><span class="icon-remove"></span></a><a href="javascript:DetailTapply(' + obj.Id + ')" class="btn btn-info"><span class="icon-print"></span></a>';
+            //}
             return result;
         }
         function DeleteTapply(id) {
@@ -187,7 +187,7 @@
             var mol = ViewBag.bread as ViewMenu;
 }
 <div id="content-header">
-    <div id="breadcrumb"><a href="@mol.url/@mol.Id" title="" class="tip-bottom"><i class="icon-home"></i> @mol.text</a></div>
+    <div id="breadcrumb"> <a href="@mol.url/@mol.Id" title="" class="tip-bottom"><i class="icon-home"></i> @mol.text</a></div>
 </div>
 <br />
 <div class="bodycontent">
